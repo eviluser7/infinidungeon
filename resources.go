@@ -6,6 +6,7 @@ import (
 	_ "image/png"
 
 	"github.com/eviluser7/infinidungeon/resources/img"
+	"github.com/eviluser7/infinidungeon/resources/img/stage1"
 	"github.com/eviluser7/infinidungeon/resources/sfx"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/audio"
@@ -63,155 +64,155 @@ func loadMaps() {
 	var err error
 
 	// Level 1
-	imgBg0, _, err := image.Decode(bytes.NewReader(img.Bg0_png))
+	imgBg0, _, err := image.Decode(bytes.NewReader(stage1.Bg0_png))
 	if err != nil {
 		panic(err)
 	}
-	background0 = ebiten.NewImageFromImage(imgBg0)
+	background0I = ebiten.NewImageFromImage(imgBg0)
 
-	imgBg1, _, err := image.Decode(bytes.NewReader(img.Bg1_png))
+	imgBg1, _, err := image.Decode(bytes.NewReader(stage1.Bg1_png))
 	if err != nil {
 		panic(err)
 	}
-	background1 = ebiten.NewImageFromImage(imgBg1)
+	background1I = ebiten.NewImageFromImage(imgBg1)
 
-	imgBg2, _, err := image.Decode(bytes.NewReader(img.Bg2_png))
+	imgBg2, _, err := image.Decode(bytes.NewReader(stage1.Bg2_png))
 	if err != nil {
 		panic(err)
 	}
-	background2 = ebiten.NewImageFromImage(imgBg2)
+	background2I = ebiten.NewImageFromImage(imgBg2)
 
-	imgBg3, _, err := image.Decode(bytes.NewReader(img.Bg3_png))
+	imgBg3, _, err := image.Decode(bytes.NewReader(stage1.Bg3_png))
 	if err != nil {
 		panic(err)
 	}
-	background3 = ebiten.NewImageFromImage(imgBg3)
+	background3I = ebiten.NewImageFromImage(imgBg3)
 
-	imgBg4, _, err := image.Decode(bytes.NewReader(img.Bg4_png))
+	imgBg4, _, err := image.Decode(bytes.NewReader(stage1.Bg4_png))
 	if err != nil {
 		panic(err)
 	}
-	background4 = ebiten.NewImageFromImage(imgBg4)
+	background4I = ebiten.NewImageFromImage(imgBg4)
 
-	imgBg5, _, err := image.Decode(bytes.NewReader(img.Bg5_png))
+	imgBg5, _, err := image.Decode(bytes.NewReader(stage1.Bg5_png))
 	if err != nil {
 		panic(err)
 	}
-	background5 = ebiten.NewImageFromImage(imgBg5)
+	background5I = ebiten.NewImageFromImage(imgBg5)
 
-	imgBg6, _, err := image.Decode(bytes.NewReader(img.Bg6_png))
+	imgBg6, _, err := image.Decode(bytes.NewReader(stage1.Bg6_png))
 	if err != nil {
 		panic(err)
 	}
-	background6 = ebiten.NewImageFromImage(imgBg6)
+	background6I = ebiten.NewImageFromImage(imgBg6)
 
-	imgBg7, _, err := image.Decode(bytes.NewReader(img.Bg7_png))
+	imgBg7, _, err := image.Decode(bytes.NewReader(stage1.Bg7_png))
 	if err != nil {
 		panic(err)
 	}
-	background7 = ebiten.NewImageFromImage(imgBg7)
+	background7I = ebiten.NewImageFromImage(imgBg7)
 
-	imgBg8, _, err := image.Decode(bytes.NewReader(img.Bg8_png))
+	imgBg8, _, err := image.Decode(bytes.NewReader(stage1.Bg8_png))
 	if err != nil {
 		panic(err)
 	}
-	background8 = ebiten.NewImageFromImage(imgBg8)
+	background8I = ebiten.NewImageFromImage(imgBg8)
 
-	imgBg9, _, err := image.Decode(bytes.NewReader(img.Bg9_png))
+	imgBg9, _, err := image.Decode(bytes.NewReader(stage1.Bg9_png))
 	if err != nil {
 		panic(err)
 	}
-	background9 = ebiten.NewImageFromImage(imgBg9)
+	background9I = ebiten.NewImageFromImage(imgBg9)
 
-	imgBg10, _, err := image.Decode(bytes.NewReader(img.Bg10_png))
+	imgBg10, _, err := image.Decode(bytes.NewReader(stage1.Bg10_png))
 	if err != nil {
 		panic(err)
 	}
-	background10 = ebiten.NewImageFromImage(imgBg10)
+	background10I = ebiten.NewImageFromImage(imgBg10)
 
-	imgBg11, _, err := image.Decode(bytes.NewReader(img.Bg11_png))
+	imgBg11, _, err := image.Decode(bytes.NewReader(stage1.Bg11_png))
 	if err != nil {
 		panic(err)
 	}
-	background11 = ebiten.NewImageFromImage(imgBg11)
+	background11I = ebiten.NewImageFromImage(imgBg11)
 
-	imgBg12, _, err := image.Decode(bytes.NewReader(img.Bg12_png))
+	imgBg12, _, err := image.Decode(bytes.NewReader(stage1.Bg12_png))
 	if err != nil {
 		panic(err)
 	}
-	background12 = ebiten.NewImageFromImage(imgBg12)
+	background12I = ebiten.NewImageFromImage(imgBg12)
 
-	imgBg13, _, err := image.Decode(bytes.NewReader(img.Bg13_png))
+	imgBg13, _, err := image.Decode(bytes.NewReader(stage1.Bg13_png))
 	if err != nil {
 		panic(err)
 	}
-	background13 = ebiten.NewImageFromImage(imgBg13)
+	background13I = ebiten.NewImageFromImage(imgBg13)
 
-	imgBg14, _, err := image.Decode(bytes.NewReader(img.Bg14_png))
+	imgBg14, _, err := image.Decode(bytes.NewReader(stage1.Bg14_png))
 	if err != nil {
 		panic(err)
 	}
-	background14 = ebiten.NewImageFromImage(imgBg14)
+	background14I = ebiten.NewImageFromImage(imgBg14)
 
-	imgBg15, _, err := image.Decode(bytes.NewReader(img.Bg15_png))
+	imgBg15, _, err := image.Decode(bytes.NewReader(stage1.Bg15_png))
 	if err != nil {
 		panic(err)
 	}
-	background15 = ebiten.NewImageFromImage(imgBg15)
+	background15I = ebiten.NewImageFromImage(imgBg15)
 
-	imgBg16, _, err := image.Decode(bytes.NewReader(img.Bg16_png))
+	imgBg16, _, err := image.Decode(bytes.NewReader(stage1.Bg16_png))
 	if err != nil {
 		panic(err)
 	}
-	background16 = ebiten.NewImageFromImage(imgBg16)
+	background16I = ebiten.NewImageFromImage(imgBg16)
 
-	imgBg17, _, err := image.Decode(bytes.NewReader(img.Bg17_png))
+	imgBg17, _, err := image.Decode(bytes.NewReader(stage1.Bg17_png))
 	if err != nil {
 		panic(err)
 	}
-	background17 = ebiten.NewImageFromImage(imgBg17)
+	background17I = ebiten.NewImageFromImage(imgBg17)
 
-	imgBg18p, _, err := image.Decode(bytes.NewReader(img.Bg18pre_png))
+	imgBg18p, _, err := image.Decode(bytes.NewReader(stage1.Bg18pre_png))
 	if err != nil {
 		panic(err)
 	}
-	background18pre = ebiten.NewImageFromImage(imgBg18p)
+	background18preI = ebiten.NewImageFromImage(imgBg18p)
 
-	imgBg18ps, _, err := image.Decode(bytes.NewReader(img.Bg18post_png))
+	imgBg18ps, _, err := image.Decode(bytes.NewReader(stage1.Bg18post_png))
 	if err != nil {
 		panic(err)
 	}
-	background18post = ebiten.NewImageFromImage(imgBg18ps)
+	background18postI = ebiten.NewImageFromImage(imgBg18ps)
 
-	imgBg19, _, err := image.Decode(bytes.NewReader(img.Bg19_png))
+	imgBg19, _, err := image.Decode(bytes.NewReader(stage1.Bg19_png))
 	if err != nil {
 		panic(err)
 	}
-	background19 = ebiten.NewImageFromImage(imgBg19)
+	background19I = ebiten.NewImageFromImage(imgBg19)
 
-	imgBg20, _, err := image.Decode(bytes.NewReader(img.Bg20_png))
+	imgBg20, _, err := image.Decode(bytes.NewReader(stage1.Bg20_png))
 	if err != nil {
 		panic(err)
 	}
-	background20 = ebiten.NewImageFromImage(imgBg20)
+	background20I = ebiten.NewImageFromImage(imgBg20)
 
-	imgBg21, _, err := image.Decode(bytes.NewReader(img.Bg21_png))
+	imgBg21, _, err := image.Decode(bytes.NewReader(stage1.Bg21_png))
 	if err != nil {
 		panic(err)
 	}
-	background21 = ebiten.NewImageFromImage(imgBg21)
+	background21I = ebiten.NewImageFromImage(imgBg21)
 
-	imgBg22, _, err := image.Decode(bytes.NewReader(img.Bg22_png))
+	imgBg22, _, err := image.Decode(bytes.NewReader(stage1.Bg22_png))
 	if err != nil {
 		panic(err)
 	}
-	background22 = ebiten.NewImageFromImage(imgBg22)
+	background22I = ebiten.NewImageFromImage(imgBg22)
 
-	imgBg23, _, err := image.Decode(bytes.NewReader(img.Bg23_png))
+	imgBg23, _, err := image.Decode(bytes.NewReader(stage1.Bg23_png))
 	if err != nil {
 		panic(err)
 	}
-	background23 = ebiten.NewImageFromImage(imgBg23)
+	background23I = ebiten.NewImageFromImage(imgBg23)
 }
 
 func loadResources() {
