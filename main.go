@@ -10,6 +10,7 @@ const (
 func main() {
 	loadResources()
 	loadMaps()
+	loadSounds()
 
 	game := &Game{
 		scene:   "STAGE1",

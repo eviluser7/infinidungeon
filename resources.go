@@ -6,7 +6,10 @@ import (
 	_ "image/png"
 
 	"github.com/eviluser7/infinidungeon/resources/img"
+	"github.com/eviluser7/infinidungeon/resources/sfx"
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/audio"
+	"github.com/hajimehoshi/ebiten/v2/audio/wav"
 )
 
 var (
@@ -46,7 +49,13 @@ var (
 	blur      *ebiten.Image
 
 	// Env
-	blueBlur *ebiten.Image
+	blueBlur    *ebiten.Image
+	blueShrine  *ebiten.Image
+	shrineBlur1 *ebiten.Image
+
+	// Sounds
+	audioContext = audio.NewContext(44100)
+	enableShrine *audio.Player
 )
 
 func loadMaps() {
@@ -249,4 +258,26 @@ func loadResources() {
 		panic(err)
 	}
 	blueBlur = ebiten.NewImageFromImage(imgBlueBlur)
+
+	imgBlueShrineBlur, _, err := image.Decode(bytes.NewReader(img.BlueShrineBlur_png))
+	if err != nil {
+		panic(err)
+	}
+	shrineBlur1 = ebiten.NewImageFromImage(imgBlueShrineBlur)
+
+	imgBlueShrine, _, err := image.Decode(bytes.NewReader(img.BlueShrine_png))
+	if err != nil {
+		panic(err)
+	}
+	blueShrine = ebiten.NewImageFromImage(imgBlueShrine)
+}
+
+func loadSounds() {
+	var err error
+
+	shrineSound, err := wav.Decode(audioContext, bytes.NewReader(sfx.EnableShrine_wav))
+	if err != nil {
+		panic(err)
+	}
+	enableShrine, err = audio.NewPlayer(audioContext, shrineSound)
 }

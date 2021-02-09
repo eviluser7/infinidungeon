@@ -86,6 +86,17 @@ func (g *Game) Draw(screen *ebiten.Image) {
 			screen.DrawImage(blueBlur, &g.op)
 		}
 
+		if g.atLevel == 10 && g.scene == "STAGE1" && !g.player.enabledShrine1 {
+			g.op.GeoM.Reset()
+			g.op.GeoM.Translate(0.0, 0.0)
+			screen.DrawImage(shrineBlur1, &g.op)
+
+			op := &ebiten.DrawImageOptions{}
+			op.GeoM.Reset()
+			op.GeoM.Translate(185.0, 132.0)
+			screen.DrawImage(blueShrine, op)
+		}
+
 		// Draw player
 		g.player.Draw(screen)
 	}

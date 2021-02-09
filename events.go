@@ -306,9 +306,8 @@ func (g *Game) Update() error {
 
 	if inpututil.IsKeyJustPressed(ebiten.KeyEscape) {
 		os.Exit(0)
-		/*
-			fmt.Println(g.player.x, g.player.y)
-			fmt.Println(g.atLevel) */
+		//fmt.Println(g.player.x, g.player.y)
+		//fmt.Println(g.atLevel)
 	}
 
 	if inpututil.IsKeyJustPressed(ebiten.KeyM) {
@@ -319,10 +318,22 @@ func (g *Game) Update() error {
 		//fmt.Println(g.atLevel)
 	}
 
+	// Debug stages
 	if inpututil.IsKeyJustPressed(ebiten.KeyG) {
 		g.atLevel += 11
 	} else if inpututil.IsKeyJustPressed(ebiten.KeyH) {
 		g.atLevel -= 11
+	}
+
+	// Grab shrines
+	if inpututil.IsKeyJustPressed(ebiten.KeySpace) {
+		if g.scene == "STAGE1" && g.atLevel == 10 &&
+			g.player.x >= 160 && g.player.x <= 236 &&
+			g.player.y >= 95 && g.player.y <= 173 && !g.player.enabledShrine1 {
+			g.player.enabledShrine1 = true
+			enableShrine.Rewind()
+			enableShrine.Play()
+		}
 	}
 
 	// Update player
