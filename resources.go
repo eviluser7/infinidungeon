@@ -14,31 +14,31 @@ import (
 
 var (
 	// Level 1
-	background0      *ebiten.Image
-	background1      *ebiten.Image
-	background2      *ebiten.Image
-	background3      *ebiten.Image
-	background4      *ebiten.Image
-	background5      *ebiten.Image
-	background6      *ebiten.Image
-	background7      *ebiten.Image
-	background8      *ebiten.Image
-	background9      *ebiten.Image
-	background10     *ebiten.Image
-	background11     *ebiten.Image
-	background12     *ebiten.Image
-	background13     *ebiten.Image
-	background14     *ebiten.Image
-	background15     *ebiten.Image
-	background16     *ebiten.Image
-	background17     *ebiten.Image
-	background18pre  *ebiten.Image
-	background18post *ebiten.Image
-	background19     *ebiten.Image
-	background20     *ebiten.Image
-	background21     *ebiten.Image
-	background22     *ebiten.Image
-	background23     *ebiten.Image
+	background0I      *ebiten.Image
+	background1I      *ebiten.Image
+	background2I      *ebiten.Image
+	background3I      *ebiten.Image
+	background4I      *ebiten.Image
+	background5I      *ebiten.Image
+	background6I      *ebiten.Image
+	background7I      *ebiten.Image
+	background8I      *ebiten.Image
+	background9I      *ebiten.Image
+	background10I     *ebiten.Image
+	background11I     *ebiten.Image
+	background12I     *ebiten.Image
+	background13I     *ebiten.Image
+	background14I     *ebiten.Image
+	background15I     *ebiten.Image
+	background16I     *ebiten.Image
+	background17I     *ebiten.Image
+	background18preI  *ebiten.Image
+	background18postI *ebiten.Image
+	background19I     *ebiten.Image
+	background20I     *ebiten.Image
+	background21I     *ebiten.Image
+	background22I     *ebiten.Image
+	background23I     *ebiten.Image
 
 	// Character
 	charIdle1 *ebiten.Image
