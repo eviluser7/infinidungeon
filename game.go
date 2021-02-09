@@ -71,6 +71,8 @@ func (g *Game) Draw(screen *ebiten.Image) {
 			screen.DrawImage(background21, &g.op)
 		case 22:
 			screen.DrawImage(background22, &g.op)
+		case 23:
+			screen.DrawImage(background23, &g.op)
 		}
 
 		// Draw blur

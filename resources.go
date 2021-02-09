@@ -38,6 +38,7 @@ var (
 	background20     *ebiten.Image
 	background21     *ebiten.Image
 	background22     *ebiten.Image
+	background23     *ebiten.Image
 
 	// Character
 	charIdle1 *ebiten.Image
@@ -205,6 +206,12 @@ func loadMaps() {
 		panic(err)
 	}
 	background22 = ebiten.NewImageFromImage(imgBg22)
+
+	imgBg23, _, err := image.Decode(bytes.NewReader(img.Bg23_png))
+	if err != nil {
+		panic(err)
+	}
+	background23 = ebiten.NewImageFromImage(imgBg23)
 }
 
 func loadResources() {

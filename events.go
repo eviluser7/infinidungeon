@@ -266,7 +266,17 @@ func (p *Player) Update(g *Game) {
 			p.x = 264
 			p.y = 178
 			g.atLevel = 21
-		} else if p.y <= 92 && g.atLevel == 21 {
+		} else if p.x >= 290 && g.atLevel == 22 {
+			p.x = 45
+			p.y = 178
+			g.atLevel = 23
+		} else if p.x <= 30 && g.atLevel == 23 {
+			p.x = 264
+			p.y = 178
+			g.atLevel = 22
+		}
+
+		if p.y <= 92 && g.atLevel == 21 {
 			p.x = 160
 			p.y = 160
 			g.atLevel = 9
@@ -286,14 +296,14 @@ func (p *Player) Update(g *Game) {
 			g.atLevel = 9
 		}
 
-		if p.y <= 92 && g.atLevel == 22 {
+		if p.y <= 92 && g.atLevel == 23 {
 			p.x = 160
 			p.y = 160
 			g.atLevel = 11
 		} else if p.y >= 207 && g.atLevel == 11 {
 			p.x = 160
 			p.y = 120
-			g.atLevel = 22
+			g.atLevel = 23
 		}
 	}
 }

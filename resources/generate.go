@@ -22,6 +22,7 @@
 //go:generate file2byteslice -package=img -input=./img/20.png -output=./img/bg20.go -var=Bg20_png
 //go:generate file2byteslice -package=img -input=./img/21.png -output=./img/bg21.go -var=Bg21_png
 //go:generate file2byteslice -package=img -input=./img/22.png -output=./img/bg22.go -var=Bg22_png
+//go:generate file2byteslice -package=img -input=./img/23.png -output=./img/bg23.go -var=Bg23_png
 //go:generate file2byteslice -package=img -input=./img/char_idle_1.png -output=./img/charIdle1.go -var=CharIdle1_png
 //go:generate file2byteslice -package=img -input=./img/char_idle_2.png -output=./img/charIdle2.go -var=CharIdle2_png
 //go:generate file2byteslice -package=img -input=./img/char_idle_3.png -output=./img/charIdle3.go -var=CharIdle3_png
