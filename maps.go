@@ -64,4 +64,61 @@ func DrawMaps(g *Game, screen *ebiten.Image) {
 			screen.DrawImage(background23I, &g.op)
 		}
 	}
+
+	if g.scene == "STAGE2" {
+		switch g.atLevel {
+		case 0:
+			screen.DrawImage(background0II, &g.op)
+		case 1:
+			screen.DrawImage(background1II, &g.op)
+		case 2:
+			screen.DrawImage(background2II, &g.op)
+		case 3:
+			screen.DrawImage(background3II, &g.op)
+		case 4:
+			screen.DrawImage(background4II, &g.op)
+		case 5:
+			screen.DrawImage(background5II, &g.op)
+		case 6:
+			screen.DrawImage(background6II, &g.op)
+		case 7:
+			screen.DrawImage(background7II, &g.op)
+		case 8:
+			screen.DrawImage(background8II, &g.op)
+		case 9:
+			screen.DrawImage(background9II, &g.op)
+		case 10:
+			screen.DrawImage(background10II, &g.op)
+		case 11:
+			screen.DrawImage(background11II, &g.op)
+		case 12:
+			screen.DrawImage(background12II, &g.op)
+		case 13:
+			screen.DrawImage(background13II, &g.op)
+		case 14:
+			screen.DrawImage(background14II, &g.op)
+		case 15:
+			screen.DrawImage(background15II, &g.op)
+		case 16:
+			screen.DrawImage(background16II, &g.op)
+		case 17:
+			screen.DrawImage(background17II, &g.op)
+		case 18:
+			if !g.player.enabledShrine1 {
+				screen.DrawImage(background18preII, &g.op)
+			} else {
+				screen.DrawImage(background18postII, &g.op)
+			}
+		case 19:
+			screen.DrawImage(background19II, &g.op)
+		case 20:
+			screen.DrawImage(background20II, &g.op)
+		case 21:
+			screen.DrawImage(background21II, &g.op)
+		case 22:
+			screen.DrawImage(background22II, &g.op)
+		case 23:
+			screen.DrawImage(background23II, &g.op)
+		}
+	}
 }
