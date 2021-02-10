@@ -104,7 +104,7 @@ func DrawMaps(g *Game, screen *ebiten.Image) {
 		case 17:
 			screen.DrawImage(background17II, &g.op)
 		case 18:
-			if !g.player.enabledShrine1 {
+			if !g.player.enabledShrine2 {
 				screen.DrawImage(background18preII, &g.op)
 			} else {
 				screen.DrawImage(background18postII, &g.op)

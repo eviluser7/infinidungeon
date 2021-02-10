@@ -58,8 +58,11 @@
 //go:generate file2byteslice -package=img -input=./img/char_walk_3.png -output=./img/charWalk3.go -var=CharWalk3_png
 //go:generate file2byteslice -package=img -input=./img/blur.png -output=./img/blur.go -var=Blur_png
 //go:generate file2byteslice -package=img -input=./img/blue_blur.png -output=./img/blueBlur.go -var=BlueBlur_png
+//go:generate file2byteslice -package=img -input=./img/yellowBlur.png -output=./img/yellowBlur.go -var=YellowBlur_png
 //go:generate file2byteslice -package=img -input=./img/blueShrine.png -output=./img/blueShrine.go -var=BlueShrine_png
+//go:generate file2byteslice -package=img -input=./img/yellowShrine.png -output=./img/yellowShrine.go -var=YellowShrine_png
 //go:generate file2byteslice -package=img -input=./img/shrineBlur1.png -output=./img/shrineBlur1.go -var=BlueShrineBlur_png
+//go:generate file2byteslice -package=img -input=./img/shrineBlur2.png -output=./img/shrineBlur2.go -var=YellowShrineBlur_png
 //go:generate file2byteslice -package=sfx -input=./sfx/enableShrine.wav -output=./sfx/enableShrine.go -var=EnableShrine_wav
 //go:generate gofmt -s -w .
 

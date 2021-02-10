@@ -31,6 +31,12 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		screen.DrawImage(blueBlur, &g.op)
 	}
 
+	if g.atLevel == 18 && g.player.enabledShrine2 && g.scene == "STAGE2" {
+		g.op.GeoM.Reset()
+		g.op.GeoM.Translate(0.0, 0.0)
+		screen.DrawImage(yellowBlur, &g.op)
+	}
+
 	if g.atLevel == 10 && g.scene == "STAGE1" && !g.player.enabledShrine1 {
 		g.op.GeoM.Reset()
 		g.op.GeoM.Translate(0.0, 0.0)
@@ -40,6 +46,17 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		op.GeoM.Reset()
 		op.GeoM.Translate(185.0, 132.0)
 		screen.DrawImage(blueShrine, op)
+	}
+
+	if g.atLevel == 22 && g.scene == "STAGE2" && !g.player.enabledShrine2 {
+		g.op.GeoM.Reset()
+		g.op.GeoM.Translate(0.0, 0.0)
+		screen.DrawImage(shrineBlur2, &g.op)
+
+		op := &ebiten.DrawImageOptions{}
+		op.GeoM.Reset()
+		op.GeoM.Translate(100.0, 130.0)
+		screen.DrawImage(yellowShrine, op)
 	}
 
 	// Draw player

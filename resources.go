@@ -79,9 +79,12 @@ var (
 	blur      *ebiten.Image
 
 	// Env
-	blueBlur    *ebiten.Image
-	blueShrine  *ebiten.Image
-	shrineBlur1 *ebiten.Image
+	blueBlur     *ebiten.Image
+	yellowBlur   *ebiten.Image
+	blueShrine   *ebiten.Image
+	yellowShrine *ebiten.Image
+	shrineBlur1  *ebiten.Image
+	shrineBlur2  *ebiten.Image
 
 	// Sounds
 	audioContext = audio.NewContext(44100)
@@ -446,17 +449,35 @@ func loadResources() {
 	}
 	blueBlur = ebiten.NewImageFromImage(imgBlueBlur)
 
+	imgYellowBlur, _, err := image.Decode(bytes.NewReader(img.YellowBlur_png))
+	if err != nil {
+		panic(err)
+	}
+	yellowBlur = ebiten.NewImageFromImage(imgYellowBlur)
+
 	imgBlueShrineBlur, _, err := image.Decode(bytes.NewReader(img.BlueShrineBlur_png))
 	if err != nil {
 		panic(err)
 	}
 	shrineBlur1 = ebiten.NewImageFromImage(imgBlueShrineBlur)
 
+	imgYellowShrineBlur, _, err := image.Decode(bytes.NewReader(img.YellowShrineBlur_png))
+	if err != nil {
+		panic(err)
+	}
+	shrineBlur2 = ebiten.NewImageFromImage(imgYellowShrineBlur)
+
 	imgBlueShrine, _, err := image.Decode(bytes.NewReader(img.BlueShrine_png))
 	if err != nil {
 		panic(err)
 	}
 	blueShrine = ebiten.NewImageFromImage(imgBlueShrine)
+
+	imgYellowShrine, _, err := image.Decode(bytes.NewReader(img.YellowShrine_png))
+	if err != nil {
+		panic(err)
+	}
+	yellowShrine = ebiten.NewImageFromImage(imgYellowShrine)
 }
 
 func loadSounds() {

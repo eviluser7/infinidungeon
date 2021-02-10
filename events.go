@@ -549,6 +549,14 @@ func (g *Game) Update() error {
 			enableShrine.Rewind()
 			enableShrine.Play()
 		}
+
+		if g.scene == "STAGE2" && g.atLevel == 22 &&
+			g.player.x >= 74 && g.player.x <= 148 &&
+			g.player.y >= 95 && g.player.y <= 173 && !g.player.enabledShrine2 {
+			g.player.enabledShrine2 = true
+			enableShrine.Rewind()
+			enableShrine.Play()
+		}
 	}
 
 	// Update player

@@ -12,6 +12,7 @@ type Player struct {
 	idleNumber     int
 	walkNumber     int
 	enabledShrine1 bool
+	enabledShrine2 bool
 }
 
 // Draw player
