@@ -86,6 +86,10 @@ var (
 	shrineBlur1  *ebiten.Image
 	shrineBlur2  *ebiten.Image
 
+	// External
+	wasd     *ebiten.Image
+	spaceBar *ebiten.Image
+
 	// Sounds
 	audioContext = audio.NewContext(44100)
 	enableShrine *audio.Player
@@ -478,6 +482,19 @@ func loadResources() {
 		panic(err)
 	}
 	yellowShrine = ebiten.NewImageFromImage(imgYellowShrine)
+
+	// External
+	imgWasd, _, err := image.Decode(bytes.NewReader(img.Wasd_png))
+	if err != nil {
+		panic(err)
+	}
+	wasd = ebiten.NewImageFromImage(imgWasd)
+
+	imgSpacebar, _, err := image.Decode(bytes.NewReader(img.Spacebar_png))
+	if err != nil {
+		panic(err)
+	}
+	spaceBar = ebiten.NewImageFromImage(imgSpacebar)
 }
 
 func loadSounds() {

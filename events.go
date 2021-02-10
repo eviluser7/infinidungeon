@@ -71,6 +71,10 @@ func (p *Player) Update(g *Game) {
 		p.walkNumber = 0
 	}
 
+	if p.isMoving {
+		p.movedOnce = true
+	}
+
 	//////////////// Switching to other rooms //////////////////////////
 	// Level 1
 	if g.scene == "STAGE1" {

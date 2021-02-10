@@ -59,8 +59,32 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		screen.DrawImage(yellowShrine, op)
 	}
 
+	// Draw controls
+	if !g.player.movedOnce && g.scene != "menu" {
+		g.op.GeoM.Reset()
+		g.op.GeoM.Translate(float64(g.player.x), float64(g.player.y))
+		screen.DrawImage(wasd, &g.op)
+	}
+
 	// Draw player
 	g.player.Draw(screen)
+
+	// Show spacebar
+	if g.scene == "STAGE1" && g.atLevel == 10 &&
+		g.player.x >= 160 && g.player.x <= 236 &&
+		g.player.y >= 95 && g.player.y <= 173 && !g.player.enabledShrine1 {
+		g.op.GeoM.Reset()
+		g.op.GeoM.Translate(170.0, 110.0)
+		screen.DrawImage(spaceBar, &g.op)
+	}
+
+	if g.scene == "STAGE2" && g.atLevel == 22 &&
+		g.player.x >= 74 && g.player.x <= 148 &&
+		g.player.y >= 95 && g.player.y <= 173 && !g.player.enabledShrine2 {
+		g.op.GeoM.Reset()
+		g.op.GeoM.Translate(85.0, 110.0)
+		screen.DrawImage(spaceBar, &g.op)
+	}
 }
 
 // Layout is the window size
