@@ -50,6 +50,19 @@
 //go:generate file2byteslice -package=stage2 -input=./img/stage2/22.png -output=./img/stage2/bg22.go -var=Bg22_png
 //go:generate file2byteslice -package=stage2 -input=./img/stage2/23.png -output=./img/stage2/bg23.go -var=Bg23_png
 
+//go:generate file2byteslice -package=stage3 -input=./img/stage3/0.png -output=./img/stage3/bg0.go -var=BgStage3_png
+//go:generate file2byteslice -package=stage3 -input=./img/stage3/exitPre.png -output=./img/stage3/exitPre.go -var=ExitStage3pre_png
+//go:generate file2byteslice -package=stage3 -input=./img/stage3/exitPost.png -output=./img/stage3/exitPost.go -var=ExitStage3post_png
+//go:generate file2byteslice -package=stage3 -input=./img/stage3/arrowUp.png -output=./img/stage3/arrowUp.go -var=ArrowUp_png
+//go:generate file2byteslice -package=stage3 -input=./img/stage3/arrowRight.png -output=./img/stage3/arrowRight.go -var=ArrowRight_png
+//go:generate file2byteslice -package=stage3 -input=./img/stage3/arrowDown.png -output=./img/stage3/arrowDown.go -var=ArrowDown_png
+//go:generate file2byteslice -package=stage3 -input=./img/stage3/arrowLeft.png -output=./img/stage3/arrowLeft.go -var=ArrowLeft_png
+//go:generate file2byteslice -package=stage3 -input=./img/stage3/arrowRD.png -output=./img/stage3/arrowRD.go -var=ArrowRD_png
+//go:generate file2byteslice -package=stage3 -input=./img/stage3/arrowLR.png -output=./img/stage3/arrowLR.go -var=ArrowLR_png
+//go:generate file2byteslice -package=stage3 -input=./img/stage3/circle.png -output=./img/stage3/circle.go -var=Circle_png
+//go:generate file2byteslice -package=stage3 -input=./img/stage3/greenBlur.png -output=./img/stage3/shrineBlur3.go -var=GreenShrineBlur_png
+//go:generate file2byteslice -package=stage3 -input=./img/stage3/greenShrine.png -output=./img/stage3/greenShrine.go -var=GreenShrine_png
+
 //go:generate file2byteslice -package=img -input=./img/char_idle_1.png -output=./img/charIdle1.go -var=CharIdle1_png
 //go:generate file2byteslice -package=img -input=./img/char_idle_2.png -output=./img/charIdle2.go -var=CharIdle2_png
 //go:generate file2byteslice -package=img -input=./img/char_idle_3.png -output=./img/charIdle3.go -var=CharIdle3_png

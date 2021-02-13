@@ -1,0 +1,5 @@
+ 0r 1r 2d 3r 4d
+ 5d 6u 7d 8u 9d
+10r 11d 12d 13r 14d
+15r 16ul 17d 18d 19l
+20s 21l 22l 23lr 24l

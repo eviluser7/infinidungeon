@@ -121,4 +121,88 @@ func DrawMaps(g *Game, screen *ebiten.Image) {
 			screen.DrawImage(background23II, &g.op)
 		}
 	}
+
+	if g.scene == "STAGE3" {
+		switch g.atLevel {
+		case 0:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowLeft, &g.op)
+		case 1:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowLeft, &g.op)
+		case 2:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowUp, &g.op)
+		case 3:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowLeft, &g.op)
+		case 4:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowUp, &g.op)
+		case 5:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowDown, &g.op)
+		case 6:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowUp, &g.op)
+		case 7:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowUp, &g.op)
+		case 8:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowDown, &g.op)
+		case 9:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowUp, &g.op)
+		case 10:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowLeft, &g.op)
+		case 11:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowUp, &g.op)
+		case 12:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowUp, &g.op)
+		case 13:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowLeft, &g.op)
+		case 14:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowUp, &g.op)
+		case 15:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowLeft, &g.op)
+		case 16:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowRD, &g.op)
+		case 17:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowUp, &g.op)
+		case 18:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowUp, &g.op)
+		case 19:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowRight, &g.op)
+		case 20:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(circle, &g.op)
+		case 21:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowRight, &g.op)
+		case 22:
+			if !g.player.enabledShrine3 {
+				screen.DrawImage(exitPreIII, &g.op)
+			} else {
+				screen.DrawImage(exitPostIII, &g.op)
+				screen.DrawImage(shrineBlur3, &g.op)
+			}
+		case 23:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowLR, &g.op)
+		case 24:
+			screen.DrawImage(backgroundIII, &g.op)
+			screen.DrawImage(arrowRight, &g.op)
+		}
+	}
 }

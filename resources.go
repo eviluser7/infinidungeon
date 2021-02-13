@@ -8,6 +8,7 @@ import (
 	"github.com/eviluser7/infinidungeon/resources/img"
 	"github.com/eviluser7/infinidungeon/resources/img/stage1"
 	"github.com/eviluser7/infinidungeon/resources/img/stage2"
+	"github.com/eviluser7/infinidungeon/resources/img/stage3"
 	"github.com/eviluser7/infinidungeon/resources/sfx"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/audio"
@@ -69,6 +70,18 @@ var (
 	background22II     *ebiten.Image
 	background23II     *ebiten.Image
 
+	// Level 3
+	backgroundIII *ebiten.Image
+	exitPreIII    *ebiten.Image
+	exitPostIII   *ebiten.Image
+	arrowUp       *ebiten.Image
+	arrowRight    *ebiten.Image
+	arrowDown     *ebiten.Image
+	arrowLeft     *ebiten.Image
+	arrowRD       *ebiten.Image
+	arrowLR       *ebiten.Image
+	circle        *ebiten.Image
+
 	// Character
 	charIdle1 *ebiten.Image
 	charIdle2 *ebiten.Image
@@ -83,8 +96,10 @@ var (
 	yellowBlur   *ebiten.Image
 	blueShrine   *ebiten.Image
 	yellowShrine *ebiten.Image
+	greenShrine  *ebiten.Image
 	shrineBlur1  *ebiten.Image
 	shrineBlur2  *ebiten.Image
+	shrineBlur3  *ebiten.Image
 
 	// External
 	wasd     *ebiten.Image
@@ -399,6 +414,67 @@ func loadMaps() {
 		panic(err)
 	}
 	background23II = ebiten.NewImageFromImage(imgBg23II)
+
+	// Level 3
+	imgBgIII, _, err := image.Decode(bytes.NewReader(stage3.BgStage3_png))
+	if err != nil {
+		panic(err)
+	}
+	backgroundIII = ebiten.NewImageFromImage(imgBgIII)
+
+	imgExitPreIII, _, err := image.Decode(bytes.NewReader(stage3.ExitStage3pre_png))
+	if err != nil {
+		panic(err)
+	}
+	exitPreIII = ebiten.NewImageFromImage(imgExitPreIII)
+
+	imgExitPostIII, _, err := image.Decode(bytes.NewReader(stage3.ExitStage3post_png))
+	if err != nil {
+		panic(err)
+	}
+	exitPostIII = ebiten.NewImageFromImage(imgExitPostIII)
+
+	imgArrowUp, _, err := image.Decode(bytes.NewReader(stage3.ArrowUp_png))
+	if err != nil {
+		panic(err)
+	}
+	arrowUp = ebiten.NewImageFromImage(imgArrowUp)
+
+	imgArrowRight, _, err := image.Decode(bytes.NewReader(stage3.ArrowRight_png))
+	if err != nil {
+		panic(err)
+	}
+	arrowRight = ebiten.NewImageFromImage(imgArrowRight)
+
+	imgArrowDown, _, err := image.Decode(bytes.NewReader(stage3.ArrowDown_png))
+	if err != nil {
+		panic(err)
+	}
+	arrowDown = ebiten.NewImageFromImage(imgArrowDown)
+
+	imgArrowLeft, _, err := image.Decode(bytes.NewReader(stage3.ArrowLeft_png))
+	if err != nil {
+		panic(err)
+	}
+	arrowLeft = ebiten.NewImageFromImage(imgArrowLeft)
+
+	imgArrowRD, _, err := image.Decode(bytes.NewReader(stage3.ArrowRD_png))
+	if err != nil {
+		panic(err)
+	}
+	arrowRD = ebiten.NewImageFromImage(imgArrowRD)
+
+	imgArrowLR, _, err := image.Decode(bytes.NewReader(stage3.ArrowLR_png))
+	if err != nil {
+		panic(err)
+	}
+	arrowLR = ebiten.NewImageFromImage(imgArrowLR)
+
+	imgCircle, _, err := image.Decode(bytes.NewReader(stage3.Circle_png))
+	if err != nil {
+		panic(err)
+	}
+	circle = ebiten.NewImageFromImage(imgCircle)
 }
 
 func loadResources() {
@@ -482,6 +558,18 @@ func loadResources() {
 		panic(err)
 	}
 	yellowShrine = ebiten.NewImageFromImage(imgYellowShrine)
+
+	imgGreenShrine, _, err := image.Decode(bytes.NewReader(stage3.GreenShrine_png))
+	if err != nil {
+		panic(err)
+	}
+	greenShrine = ebiten.NewImageFromImage(imgGreenShrine)
+
+	imgGreenBlur, _, err := image.Decode(bytes.NewReader(stage3.GreenShrineBlur_png))
+	if err != nil {
+		panic(err)
+	}
+	shrineBlur3 = ebiten.NewImageFromImage(imgGreenBlur)
 
 	// External
 	imgWasd, _, err := image.Decode(bytes.NewReader(img.Wasd_png))

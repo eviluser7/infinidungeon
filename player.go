@@ -13,6 +13,7 @@ type Player struct {
 	walkNumber     int
 	enabledShrine1 bool
 	enabledShrine2 bool
+	enabledShrine3 bool
 	movedOnce      bool
 }
 

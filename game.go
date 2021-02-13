@@ -1,7 +1,11 @@
 package main
 
 import (
+	"fmt"
+	"os"
+
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/inpututil"
 )
 
 // Game properties
@@ -11,6 +15,66 @@ type Game struct {
 	player  *Player
 	scene   string
 	atLevel int
+}
+
+// Update the game state
+func (g *Game) Update() error {
+	if !g.inited {
+		g.init()
+	}
+
+	if inpututil.IsKeyJustPressed(ebiten.KeyEscape) {
+		os.Exit(0)
+		//fmt.Println(g.player.x, g.player.y)
+		//fmt.Println(g.atLevel)
+	}
+
+	if inpututil.IsKeyJustPressed(ebiten.KeyM) {
+		g.atLevel++
+		fmt.Println(g.atLevel)
+	} else if inpututil.IsKeyJustPressed(ebiten.KeyN) {
+		g.atLevel--
+		fmt.Println(g.atLevel)
+	}
+
+	// Debug stages
+	if inpututil.IsKeyJustPressed(ebiten.KeyG) {
+		g.atLevel += 11
+	} else if inpututil.IsKeyJustPressed(ebiten.KeyH) {
+		g.atLevel -= 11
+	}
+
+	// Grab shrines
+	if inpututil.IsKeyJustPressed(ebiten.KeySpace) {
+		if g.scene == "STAGE1" && g.atLevel == 10 &&
+			g.player.x >= 160 && g.player.x <= 236 &&
+			g.player.y >= 95 && g.player.y <= 173 && !g.player.enabledShrine1 {
+			g.player.enabledShrine1 = true
+			enableShrine.Rewind()
+			enableShrine.Play()
+		}
+
+		if g.scene == "STAGE2" && g.atLevel == 22 &&
+			g.player.x >= 74 && g.player.x <= 148 &&
+			g.player.y >= 95 && g.player.y <= 173 && !g.player.enabledShrine2 {
+			g.player.enabledShrine2 = true
+			enableShrine.Rewind()
+			enableShrine.Play()
+		}
+
+		if g.scene == "STAGE3" && g.atLevel == 20 &&
+			g.player.x >= 128 && g.player.x <= 206 &&
+			g.player.y >= 95 && g.player.y <= 173 && !g.player.enabledShrine3 {
+			g.player.enabledShrine3 = true
+			enableShrine.Rewind()
+			enableShrine.Play()
+		}
+	}
+
+	// Update player
+	g.player.Update(g)
+
+	return nil
 }
 
 // Draw renders the screen
@@ -37,6 +101,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		screen.DrawImage(yellowBlur, &g.op)
 	}
 
+	// Draw shrine blurs
 	if g.atLevel == 10 && g.scene == "STAGE1" && !g.player.enabledShrine1 {
 		g.op.GeoM.Reset()
 		g.op.GeoM.Translate(0.0, 0.0)
@@ -57,6 +122,17 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		op.GeoM.Reset()
 		op.GeoM.Translate(100.0, 130.0)
 		screen.DrawImage(yellowShrine, op)
+	}
+
+	if g.atLevel == 20 && g.scene == "STAGE3" && !g.player.enabledShrine3 {
+		g.op.GeoM.Reset()
+		g.op.GeoM.Translate(0.0, 0.0)
+		screen.DrawImage(shrineBlur3, &g.op)
+
+		op := &ebiten.DrawImageOptions{}
+		op.GeoM.Reset()
+		op.GeoM.Translate(155.0, 140.0)
+		screen.DrawImage(greenShrine, op)
 	}
 
 	// Draw controls
@@ -83,6 +159,14 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		g.player.y >= 95 && g.player.y <= 173 && !g.player.enabledShrine2 {
 		g.op.GeoM.Reset()
 		g.op.GeoM.Translate(85.0, 110.0)
+		screen.DrawImage(spaceBar, &g.op)
+	}
+
+	if g.scene == "STAGE3" && g.atLevel == 20 &&
+		g.player.x >= 128 && g.player.x <= 206 &&
+		g.player.y >= 95 && g.player.y <= 173 && !g.player.enabledShrine3 {
+		g.op.GeoM.Reset()
+		g.op.GeoM.Translate(140.0, 120.0)
 		screen.DrawImage(spaceBar, &g.op)
 	}
 }
