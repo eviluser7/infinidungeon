@@ -82,6 +82,10 @@ var (
 	arrowLR       *ebiten.Image
 	circle        *ebiten.Image
 
+	// Level 4
+	stage4    *ebiten.Image
+	greenBlur *ebiten.Image
+
 	// Character
 	charIdle1 *ebiten.Image
 	charIdle2 *ebiten.Image
@@ -475,6 +479,19 @@ func loadMaps() {
 		panic(err)
 	}
 	circle = ebiten.NewImageFromImage(imgCircle)
+
+	// Level 4 is just one image, really
+	imgStage4, _, err := image.Decode(bytes.NewReader(img.Stage4_png))
+	if err != nil {
+		panic(err)
+	}
+	stage4 = ebiten.NewImageFromImage(imgStage4)
+
+	imgNicerBlur, _, err := image.Decode(bytes.NewReader(img.NicerBlur_png))
+	if err != nil {
+		panic(err)
+	}
+	greenBlur = ebiten.NewImageFromImage(imgNicerBlur)
 }
 
 func loadResources() {

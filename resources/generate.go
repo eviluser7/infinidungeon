@@ -63,6 +63,9 @@
 //go:generate file2byteslice -package=stage3 -input=./img/stage3/greenBlur.png -output=./img/stage3/shrineBlur3.go -var=GreenShrineBlur_png
 //go:generate file2byteslice -package=stage3 -input=./img/stage3/greenShrine.png -output=./img/stage3/greenShrine.go -var=GreenShrine_png
 
+//go:generate file2byteslice -package=img -input=./img/stage4.png -output=./img/stage4.go -var=Stage4_png
+//go:generate file2byteslice -package=img -input=./img/nicerBlur.png -output=./img/nicerBlur.go -var=NicerBlur_png
+
 //go:generate file2byteslice -package=img -input=./img/char_idle_1.png -output=./img/charIdle1.go -var=CharIdle1_png
 //go:generate file2byteslice -package=img -input=./img/char_idle_2.png -output=./img/charIdle2.go -var=CharIdle2_png
 //go:generate file2byteslice -package=img -input=./img/char_idle_3.png -output=./img/charIdle3.go -var=CharIdle3_png

@@ -205,4 +205,8 @@ func DrawMaps(g *Game, screen *ebiten.Image) {
 			screen.DrawImage(arrowRight, &g.op)
 		}
 	}
+
+	if g.scene == "STAGE4" {
+		screen.DrawImage(stage4, &g.op)
+	}
 }

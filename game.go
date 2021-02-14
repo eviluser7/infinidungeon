@@ -87,7 +87,11 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	g.op.GeoM.Reset()
 	g.op.GeoM.Translate(-float64(blurW)/2, -float64(blurH)/2) // Anchor
 	g.op.GeoM.Translate(float64(g.player.x), float64(g.player.y))
-	screen.DrawImage(blur, &g.op)
+	if g.scene != "STAGE4" {
+		screen.DrawImage(blur, &g.op)
+	} else {
+		screen.DrawImage(greenBlur, &g.op)
+	}
 
 	if g.atLevel == 18 && g.player.enabledShrine1 && g.scene == "STAGE1" {
 		g.op.GeoM.Reset()

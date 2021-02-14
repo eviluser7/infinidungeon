@@ -686,4 +686,13 @@ func (p *Player) Update(g *Game) {
 			g.scene = "STAGE4"
 		}
 	}
+
+	// Level 4
+	if g.scene == "STAGE4" {
+		if p.y >= 207 {
+			p.y = 120
+			g.atLevel = 3
+			g.scene = "STAGE5"
+		}
+	}
 }
