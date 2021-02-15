@@ -9,6 +9,7 @@ import (
 	"github.com/eviluser7/infinidungeon/resources/img/stage1"
 	"github.com/eviluser7/infinidungeon/resources/img/stage2"
 	"github.com/eviluser7/infinidungeon/resources/img/stage3"
+	"github.com/eviluser7/infinidungeon/resources/img/stage5"
 	"github.com/eviluser7/infinidungeon/resources/sfx"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/audio"
@@ -85,6 +86,12 @@ var (
 	// Level 4
 	stage4    *ebiten.Image
 	greenBlur *ebiten.Image
+
+	// Level 5
+	backgroundV     *ebiten.Image
+	backgroundVPre  *ebiten.Image
+	backgroundVPost *ebiten.Image
+	whiteShrine     *ebiten.Image
 
 	// Character
 	charIdle1 *ebiten.Image
@@ -492,6 +499,31 @@ func loadMaps() {
 		panic(err)
 	}
 	greenBlur = ebiten.NewImageFromImage(imgNicerBlur)
+
+	// Level 5
+	imgStage5, _, err := image.Decode(bytes.NewReader(stage5.Stage5_png))
+	if err != nil {
+		panic(err)
+	}
+	backgroundV = ebiten.NewImageFromImage(imgStage5)
+
+	imgStage5Pre, _, err := image.Decode(bytes.NewReader(stage5.Stage5Pre_png))
+	if err != nil {
+		panic(err)
+	}
+	backgroundVPre = ebiten.NewImageFromImage(imgStage5Pre)
+
+	imgStage5Post, _, err := image.Decode(bytes.NewReader(stage5.Stage5Post_png))
+	if err != nil {
+		panic(err)
+	}
+	backgroundVPost = ebiten.NewImageFromImage(imgStage5Post)
+
+	imgWhiteShrine, _, err := image.Decode(bytes.NewReader(stage5.WhiteShrine_png))
+	if err != nil {
+		panic(err)
+	}
+	whiteShrine = ebiten.NewImageFromImage(imgWhiteShrine)
 }
 
 func loadResources() {

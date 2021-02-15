@@ -4,17 +4,18 @@ import "github.com/hajimehoshi/ebiten/v2"
 
 // Player properties
 type Player struct {
-	x              int
-	y              int
-	w              int
-	h              int
-	isMoving       bool
-	idleNumber     int
-	walkNumber     int
-	enabledShrine1 bool
-	enabledShrine2 bool
-	enabledShrine3 bool
-	movedOnce      bool
+	x                 int
+	y                 int
+	w                 int
+	h                 int
+	isMoving          bool
+	idleNumber        int
+	walkNumber        int
+	enabledShrine1    bool
+	enabledShrine2    bool
+	enabledShrine3    bool
+	enabledLastShrine bool
+	movedOnce         bool
 }
 
 // Draw player

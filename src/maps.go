@@ -209,4 +209,14 @@ func DrawMaps(g *Game, screen *ebiten.Image) {
 	if g.scene == "STAGE4" {
 		screen.DrawImage(stage4, &g.op)
 	}
+
+	if g.scene == "STAGE5" {
+		if g.atLevel != 45 {
+			screen.DrawImage(backgroundV, &g.op)
+		} else if g.atLevel == 45 && !g.player.enabledLastShrine {
+			screen.DrawImage(backgroundVPre, &g.op)
+		} else if g.atLevel == 45 && g.player.enabledLastShrine {
+			screen.DrawImage(backgroundVPost, &g.op)
+		}
+	}
 }

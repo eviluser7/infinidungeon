@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/hajimehoshi/ebiten/v2"
@@ -29,21 +28,6 @@ func (g *Game) Update() error {
 		//fmt.Println(g.atLevel)
 	}
 
-	if inpututil.IsKeyJustPressed(ebiten.KeyM) {
-		g.atLevel++
-		fmt.Println(g.atLevel)
-	} else if inpututil.IsKeyJustPressed(ebiten.KeyN) {
-		g.atLevel--
-		fmt.Println(g.atLevel)
-	}
-
-	// Debug stages
-	if inpututil.IsKeyJustPressed(ebiten.KeyG) {
-		g.atLevel += 11
-	} else if inpututil.IsKeyJustPressed(ebiten.KeyH) {
-		g.atLevel -= 11
-	}
-
 	// Grab shrines
 	if inpututil.IsKeyJustPressed(ebiten.KeySpace) {
 		if g.scene == "STAGE1" && g.atLevel == 10 &&
@@ -69,6 +53,14 @@ func (g *Game) Update() error {
 			enableShrine.Rewind()
 			enableShrine.Play()
 		}
+
+		if g.scene == "STAGE5" && g.atLevel == 43 &&
+			g.player.x >= 128 && g.player.x <= 206 &&
+			g.player.y >= 95 && g.player.y <= 173 && !g.player.enabledLastShrine {
+			g.player.enabledLastShrine = true
+			enableShrine.Rewind()
+			enableShrine.Play()
+		}
 	}
 
 	// Update player
@@ -77,6 +69,7 @@ func (g *Game) Update() error {
 	g.player.UpdateMap02(g)
 	g.player.UpdateMap03(g)
 	g.player.UpdateMap04(g)
+	g.player.UpdateMap05(g)
 
 	return nil
 }
@@ -143,6 +136,13 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		screen.DrawImage(greenShrine, op)
 	}
 
+	if g.atLevel == 43 && g.scene == "STAGE5" && !g.player.enabledLastShrine {
+		op := &ebiten.DrawImageOptions{}
+		op.GeoM.Reset()
+		op.GeoM.Translate(0.0, 0.0)
+		screen.DrawImage(whiteShrine, op)
+	}
+
 	// Draw controls
 	if !g.player.movedOnce && g.scene != "menu" {
 		g.op.GeoM.Reset()
@@ -173,6 +173,14 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	if g.scene == "STAGE3" && g.atLevel == 20 &&
 		g.player.x >= 128 && g.player.x <= 206 &&
 		g.player.y >= 95 && g.player.y <= 173 && !g.player.enabledShrine3 {
+		g.op.GeoM.Reset()
+		g.op.GeoM.Translate(140.0, 120.0)
+		screen.DrawImage(spaceBar, &g.op)
+	}
+
+	if g.scene == "STAGE5" && g.atLevel == 43 &&
+		g.player.x >= 128 && g.player.x <= 206 &&
+		g.player.y >= 95 && g.player.y <= 173 && !g.player.enabledLastShrine {
 		g.op.GeoM.Reset()
 		g.op.GeoM.Translate(140.0, 120.0)
 		screen.DrawImage(spaceBar, &g.op)
