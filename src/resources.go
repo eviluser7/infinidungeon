@@ -101,6 +101,7 @@ var (
 	charWalk2 *ebiten.Image
 	charWalk3 *ebiten.Image
 	blur      *ebiten.Image
+	moreBlur  *ebiten.Image
 
 	// Env
 	blueBlur     *ebiten.Image
@@ -570,6 +571,12 @@ func loadResources() {
 		panic(err)
 	}
 	blur = ebiten.NewImageFromImage(imgBlur)
+
+	imgMoreBlur, _, err := image.Decode(bytes.NewReader(img.MoreBlur_png))
+	if err != nil {
+		panic(err)
+	}
+	moreBlur = ebiten.NewImageFromImage(imgMoreBlur)
 
 	// Env
 	imgBlueBlur, _, err := image.Decode(bytes.NewReader(img.BlueBlur_png))

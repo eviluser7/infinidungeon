@@ -14,25 +14,41 @@ func (p *Player) Update(g *Game) {
 
 	// Update player position & increase animation number
 	if ebiten.IsKeyPressed(ebiten.KeyW) && p.y > 92 {
-		p.y -= 2
+		if g.scene != "STAGE5" {
+			p.y -= 2.0
+		} else if g.scene == "STAGE5" {
+			p.y--
+		}
 	}
 	p.isMoving = true
 	p.walkNumber++
 
 	if ebiten.IsKeyPressed(ebiten.KeyA) && p.x > 28 {
-		p.x -= 2
+		if g.scene != "STAGE5" {
+			p.x -= 2.0
+		} else if g.scene == "STAGE5" {
+			p.x--
+		}
 	}
 	p.isMoving = true
 	p.walkNumber++
 
 	if ebiten.IsKeyPressed(ebiten.KeyS) && p.y < 207 {
-		p.y += 2
+		if g.scene != "STAGE5" {
+			p.y += 2.0
+		} else if g.scene == "STAGE5" {
+			p.y++
+		}
 	}
 	p.isMoving = true
 	p.walkNumber++
 
 	if ebiten.IsKeyPressed(ebiten.KeyD) && p.x < 292 {
-		p.x += 2
+		if g.scene != "STAGE5" {
+			p.x += 2.0
+		} else if g.scene == "STAGE5" {
+			p.x++
+		}
 	}
 	p.isMoving = true
 	p.walkNumber++

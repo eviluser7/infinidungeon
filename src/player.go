@@ -4,8 +4,8 @@ import "github.com/hajimehoshi/ebiten/v2"
 
 // Player properties
 type Player struct {
-	x                 int
-	y                 int
+	x                 float64
+	y                 float64
 	w                 int
 	h                 int
 	isMoving          bool
