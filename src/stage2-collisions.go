@@ -201,7 +201,8 @@ func (p *Player) UpdateMap02(g *Game) {
 			p.x = 160
 			p.y = 120
 			g.atLevel = 2
-			g.scene = "STAGE3"
+			g.scene = "transition"
+			g.situation = "level3"
 		}
 	}
 }

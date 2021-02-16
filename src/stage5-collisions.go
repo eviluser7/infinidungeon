@@ -391,7 +391,8 @@ func (p *Player) UpdateMap05(g *Game) {
 		}
 
 		if p.y >= 207 && g.atLevel == 45 && g.player.enabledLastShrine {
-			g.scene = "ENDSTAGE"
+			g.scene = "transition"
+			g.situation = "level6"
 			p.y = 120
 			g.atLevel = 0
 		}

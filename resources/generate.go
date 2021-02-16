@@ -95,6 +95,12 @@
 //go:generate file2byteslice -package=img -input=./img/menu.png -output=./img/menu.go -var=Menu_png
 //go:generate file2byteslice -package=img -input=./img/stage1transparent.png -output=./img/menuBG.go -var=MenuBG_png
 //go:generate file2byteslice -package=img -input=./img/menuCredits.png -output=./img/menuCredits.go -var=MenuCredits_png
+//go:generate file2byteslice -package=img -input=./img/loading1.png -output=./img/loading1.go -var=LoadingScreen1_png
+//go:generate file2byteslice -package=img -input=./img/loading2.png -output=./img/loading2.go -var=LoadingScreen2_png
+//go:generate file2byteslice -package=img -input=./img/loading3.png -output=./img/loading3.go -var=LoadingScreen3_png
+//go:generate file2byteslice -package=img -input=./img/loading4.png -output=./img/loading4.go -var=LoadingScreen4_png
+//go:generate file2byteslice -package=img -input=./img/loading5.png -output=./img/loading5.go -var=LoadingScreen5_png
+//go:generate file2byteslice -package=img -input=./img/loading6.png -output=./img/loading6.go -var=LoadingScreen6_png
 
 //go:generate file2byteslice -package=img -input=./img/wasd.png -output=./img/wasd.go -var=Wasd_png
 //go:generate file2byteslice -package=img -input=./img/spacebar.png -output=./img/spacebar.go -var=Spacebar_png

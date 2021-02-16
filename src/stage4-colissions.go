@@ -6,7 +6,8 @@ func (p *Player) UpdateMap04(g *Game) {
 		if p.y >= 207 {
 			p.y = 120
 			g.atLevel = 3
-			g.scene = "STAGE5"
+			g.scene = "transition"
+			g.situation = "level5"
 		}
 	}
 }

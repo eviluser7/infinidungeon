@@ -130,6 +130,12 @@ var (
 	menu           *ebiten.Image
 	backgroundMenu *ebiten.Image
 	menuCredits    *ebiten.Image
+	loadingScreen1 *ebiten.Image
+	loadingScreen2 *ebiten.Image
+	loadingScreen3 *ebiten.Image
+	loadingScreen4 *ebiten.Image
+	loadingScreen5 *ebiten.Image
+	loadingScreen6 *ebiten.Image
 
 	// Sounds
 	audioContext = audio.NewContext(44100)
@@ -708,6 +714,42 @@ func loadResources() {
 		panic(err)
 	}
 	menuCredits = ebiten.NewImageFromImage(imgMenuText)
+
+	imgLoading1, _, err := image.Decode(bytes.NewReader(img.LoadingScreen1_png))
+	if err != nil {
+		panic(err)
+	}
+	loadingScreen1 = ebiten.NewImageFromImage(imgLoading1)
+
+	imgLoading2, _, err := image.Decode(bytes.NewReader(img.LoadingScreen2_png))
+	if err != nil {
+		panic(err)
+	}
+	loadingScreen2 = ebiten.NewImageFromImage(imgLoading2)
+
+	imgLoading3, _, err := image.Decode(bytes.NewReader(img.LoadingScreen3_png))
+	if err != nil {
+		panic(err)
+	}
+	loadingScreen3 = ebiten.NewImageFromImage(imgLoading3)
+
+	imgLoading4, _, err := image.Decode(bytes.NewReader(img.LoadingScreen4_png))
+	if err != nil {
+		panic(err)
+	}
+	loadingScreen4 = ebiten.NewImageFromImage(imgLoading4)
+
+	imgLoading5, _, err := image.Decode(bytes.NewReader(img.LoadingScreen5_png))
+	if err != nil {
+		panic(err)
+	}
+	loadingScreen5 = ebiten.NewImageFromImage(imgLoading5)
+
+	imgLoading6, _, err := image.Decode(bytes.NewReader(img.LoadingScreen6_png))
+	if err != nil {
+		panic(err)
+	}
+	loadingScreen6 = ebiten.NewImageFromImage(imgLoading6)
 }
 
 func loadSounds() {

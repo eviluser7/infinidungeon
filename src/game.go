@@ -76,11 +76,12 @@ func (g *Game) Update() error {
 	}
 
 	if g.activateTimer {
+		//fmt.Println(g.sceneTimer)
 		g.sceneTimer++
 	}
 
 	// Update player
-	if g.scene != "menu" {
+	if g.scene != "menu" && g.scene != "transition" {
 		g.player.Update(g)
 	}
 
@@ -101,12 +102,13 @@ func (g *Game) Update() error {
 
 	if inpututil.IsKeyJustPressed(ebiten.KeyEnter) {
 		if g.scene == "menu" {
-			g.scene = "STAGE1"
+			g.situation = "level1"
+			g.scene = "transition"
 			g.atLevel = 6
 		}
 	}
 
-	if g.sceneTimer == 120 {
+	if g.sceneTimer == 120 && g.scene == "ENDSTAGE" {
 		g.situation = "end"
 		g.scene = "transition"
 		g.activateTimer = false
@@ -267,6 +269,8 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		screen.DrawImage(menu, &g.op)
 		screen.DrawImage(menuCredits, &g.op)
 	}
+
+	sceneTransitions(g, screen)
 }
 
 // Layout is the window size
