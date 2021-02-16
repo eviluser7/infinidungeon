@@ -1,6 +1,10 @@
 package main
 
-import "github.com/hajimehoshi/ebiten/v2"
+import (
+	"fmt"
+
+	"github.com/hajimehoshi/ebiten/v2"
+)
 
 // sceneTransitions detects what situation is going on and sets a transition
 // from screen to screen so it won't feel as empty.
@@ -81,6 +85,18 @@ func sceneTransitions(g *Game, screen *ebiten.Image) {
 				g.activateTimer = false
 				g.scene = "ENDSTAGE"
 				g.sceneTimer = 0
+			}
+		}
+
+		if g.situation == "end" {
+			punches.Play()
+			fmt.Println(punches.IsPlaying())
+			if !punches.IsPlaying() {
+				// voice goes here
+
+				// if voice isn't playing ...
+				g.scene = "menu"
+				punches.IsPlaying()
 			}
 		}
 	}

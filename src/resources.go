@@ -141,6 +141,7 @@ var (
 	audioContext = audio.NewContext(44100)
 	enableShrine *audio.Player
 	surprise     *audio.Player
+	punches      *audio.Player
 )
 
 func randomInt(min, max int) int {
@@ -766,4 +767,10 @@ func loadSounds() {
 		panic(err)
 	}
 	surprise, err = audio.NewPlayer(audioContext, surpriseSound)
+
+	punchesSound, err := wav.Decode(audioContext, bytes.NewReader(sfx.Punch_wav))
+	if err != nil {
+		panic(err)
+	}
+	punches, err = audio.NewPlayer(audioContext, punchesSound)
 }

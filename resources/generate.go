@@ -106,6 +106,7 @@
 //go:generate file2byteslice -package=img -input=./img/spacebar.png -output=./img/spacebar.go -var=Spacebar_png
 //go:generate file2byteslice -package=sfx -input=./sfx/enableShrine.wav -output=./sfx/enableShrine.go -var=EnableShrine_wav
 //go:generate file2byteslice -package=sfx -input=./sfx/surprise.wav -output=./sfx/surprise.go -var=Surprise_wav
+//go:generate file2byteslice -package=sfx -input=./sfx/punch.wav -output=./sfx/punch.go -var=Punch_wav
 //go:generate gofmt -s -w .
 
 package resources
