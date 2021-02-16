@@ -1,7 +1,5 @@
 package main
 
-import "os"
-
 // UpdateMap03 checks for collisions on 3rd stage
 func (p *Player) UpdateMap03(g *Game) {
 	if g.scene == "STAGE3" {
@@ -167,7 +165,7 @@ func (p *Player) UpdateMap03(g *Game) {
 			p.x = 160
 			p.y = 120
 			g.atLevel = 0
-			os.Exit(0)
+			g.scene = "STAGE4"
 		}
 	}
 }
