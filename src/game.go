@@ -9,11 +9,12 @@ import (
 
 // Game properties
 type Game struct {
-	inited  bool
-	op      ebiten.DrawImageOptions
-	player  *Player
-	scene   string
-	atLevel int
+	inited           bool
+	op               ebiten.DrawImageOptions
+	player           *Player
+	scene            string
+	atLevel          int
+	backgroundChoice int
 }
 
 // Update the game state
@@ -64,12 +65,21 @@ func (g *Game) Update() error {
 	}
 
 	// Update player
-	g.player.Update(g)
-	g.player.UpdateMap01(g)
-	g.player.UpdateMap02(g)
-	g.player.UpdateMap03(g)
-	g.player.UpdateMap04(g)
-	g.player.UpdateMap05(g)
+	if g.scene != "menu" {
+		g.player.Update(g)
+		g.player.UpdateMap01(g)
+		g.player.UpdateMap02(g)
+		g.player.UpdateMap03(g)
+		g.player.UpdateMap04(g)
+		g.player.UpdateMap05(g)
+	}
+
+	if inpututil.IsKeyJustPressed(ebiten.KeyEnter) {
+		if g.scene == "menu" {
+			g.scene = "STAGE1"
+			g.atLevel = 6
+		}
+	}
 
 	return nil
 }
@@ -154,7 +164,9 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	}
 
 	// Draw player
-	g.player.Draw(screen)
+	if g.scene != "menu" {
+		g.player.Draw(screen)
+	}
 
 	// Show spacebar
 	if g.scene == "STAGE1" && g.atLevel == 10 &&
@@ -187,6 +199,15 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		g.op.GeoM.Reset()
 		g.op.GeoM.Translate(140.0, 120.0)
 		screen.DrawImage(spaceBar, &g.op)
+	}
+
+	// Menu
+	if g.scene == "menu" {
+		g.op.GeoM.Reset()
+		g.op.GeoM.Translate(0.0, 0.0)
+		screen.DrawImage(backgroundMenu, &g.op)
+		screen.DrawImage(menu, &g.op)
+		screen.DrawImage(menuCredits, &g.op)
 	}
 }
 

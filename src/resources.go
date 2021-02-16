@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"image"
 	_ "image/png"
+	"math/rand"
 
 	"github.com/eviluser7/infinidungeon/resources/img"
 	"github.com/eviluser7/infinidungeon/resources/img/stage1"
@@ -117,10 +118,19 @@ var (
 	wasd     *ebiten.Image
 	spaceBar *ebiten.Image
 
+	// Menu
+	menu           *ebiten.Image
+	backgroundMenu *ebiten.Image
+	menuCredits    *ebiten.Image
+
 	// Sounds
 	audioContext = audio.NewContext(44100)
 	enableShrine *audio.Player
 )
+
+func randomInt(min, max int) int {
+	return min + rand.Intn(max-min)
+}
 
 func loadMaps() {
 	var err error
@@ -639,6 +649,25 @@ func loadResources() {
 		panic(err)
 	}
 	spaceBar = ebiten.NewImageFromImage(imgSpacebar)
+
+	// Menu
+	imgMenu, _, err := image.Decode(bytes.NewReader(img.Menu_png))
+	if err != nil {
+		panic(err)
+	}
+	menu = ebiten.NewImageFromImage(imgMenu)
+
+	imgMenuBG, _, err := image.Decode(bytes.NewReader(img.MenuBG_png))
+	if err != nil {
+		panic(err)
+	}
+	backgroundMenu = ebiten.NewImageFromImage(imgMenuBG)
+
+	imgMenuText, _, err := image.Decode(bytes.NewReader(img.MenuCredits_png))
+	if err != nil {
+		panic(err)
+	}
+	menuCredits = ebiten.NewImageFromImage(imgMenuText)
 }
 
 func loadSounds() {

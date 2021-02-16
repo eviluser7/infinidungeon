@@ -1,6 +1,11 @@
 package main
 
-import "github.com/hajimehoshi/ebiten/v2"
+import (
+	"math/rand"
+	"time"
+
+	"github.com/hajimehoshi/ebiten/v2"
+)
 
 const (
 	screenWidth  = 320
@@ -8,13 +13,14 @@ const (
 )
 
 func main() {
+	rand.Seed(time.Now().UnixNano())
 	loadResources()
 	loadMaps()
 	loadSounds()
 
 	game := &Game{
-		scene:   "STAGE1",
-		atLevel: 6,
+		scene:   "menu",
+		atLevel: 0,
 	}
 	ebiten.SetWindowSize(screenWidth*2, screenHeight*2)
 	ebiten.SetWindowResizable(true)
