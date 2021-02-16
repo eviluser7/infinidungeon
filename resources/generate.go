@@ -86,6 +86,10 @@
 //go:generate file2byteslice -package=img -input=./img/shrineBlur1.png -output=./img/shrineBlur1.go -var=BlueShrineBlur_png
 //go:generate file2byteslice -package=img -input=./img/shrineBlur2.png -output=./img/shrineBlur2.go -var=YellowShrineBlur_png
 
+//go:generate file2byteslice -package=img -input=./img/menu.png -output=./img/menu.go -var=Menu_png
+//go:generate file2byteslice -package=img -input=./img/stage1transparent.png -output=./img/menuBG.go -var=MenuBG_png
+//go:generate file2byteslice -package=img -input=./img/menuCredits.png -output=./img/menuCredits.go -var=MenuCredits_png
+
 //go:generate file2byteslice -package=img -input=./img/wasd.png -output=./img/wasd.go -var=Wasd_png
 //go:generate file2byteslice -package=img -input=./img/spacebar.png -output=./img/spacebar.go -var=Spacebar_png
 //go:generate file2byteslice -package=sfx -input=./sfx/enableShrine.wav -output=./sfx/enableShrine.go -var=EnableShrine_wav
