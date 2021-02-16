@@ -11,6 +11,7 @@ import (
 	"github.com/eviluser7/infinidungeon/resources/img/stage2"
 	"github.com/eviluser7/infinidungeon/resources/img/stage3"
 	"github.com/eviluser7/infinidungeon/resources/img/stage5"
+	"github.com/eviluser7/infinidungeon/resources/img/stageEnd"
 	"github.com/eviluser7/infinidungeon/resources/sfx"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/audio"
@@ -94,6 +95,13 @@ var (
 	backgroundVPost *ebiten.Image
 	whiteShrine     *ebiten.Image
 
+	// Level 6
+	backgroundVI1 *ebiten.Image
+	backgroundVI2 *ebiten.Image
+	evilStanding1 *ebiten.Image
+	evilStanding2 *ebiten.Image
+	exclamation   *ebiten.Image
+
 	// Character
 	charIdle1 *ebiten.Image
 	charIdle2 *ebiten.Image
@@ -126,6 +134,7 @@ var (
 	// Sounds
 	audioContext = audio.NewContext(44100)
 	enableShrine *audio.Player
+	surprise     *audio.Player
 )
 
 func randomInt(min, max int) int {
@@ -535,6 +544,37 @@ func loadMaps() {
 		panic(err)
 	}
 	whiteShrine = ebiten.NewImageFromImage(imgWhiteShrine)
+
+	// Endgame
+	imgEndBG1, _, err := image.Decode(bytes.NewReader(stageEnd.EndBG_png))
+	if err != nil {
+		panic(err)
+	}
+	backgroundVI1 = ebiten.NewImageFromImage(imgEndBG1)
+
+	imgEndBG2, _, err := image.Decode(bytes.NewReader(stageEnd.EndBG2_png))
+	if err != nil {
+		panic(err)
+	}
+	backgroundVI2 = ebiten.NewImageFromImage(imgEndBG2)
+
+	imgEvilStanding1, _, err := image.Decode(bytes.NewReader(stageEnd.MrEvilStanding_png))
+	if err != nil {
+		panic(err)
+	}
+	evilStanding1 = ebiten.NewImageFromImage(imgEvilStanding1)
+
+	imgEvilStanding2, _, err := image.Decode(bytes.NewReader(stageEnd.MrEvilStanding2_png))
+	if err != nil {
+		panic(err)
+	}
+	evilStanding2 = ebiten.NewImageFromImage(imgEvilStanding2)
+
+	imgExclamation, _, err := image.Decode(bytes.NewReader(stageEnd.Exclamation_png))
+	if err != nil {
+		panic(err)
+	}
+	exclamation = ebiten.NewImageFromImage(imgExclamation)
 }
 
 func loadResources() {
@@ -678,4 +718,10 @@ func loadSounds() {
 		panic(err)
 	}
 	enableShrine, err = audio.NewPlayer(audioContext, shrineSound)
+
+	surpriseSound, err := wav.Decode(audioContext, bytes.NewReader(sfx.Surprise_wav))
+	if err != nil {
+		panic(err)
+	}
+	surprise, err = audio.NewPlayer(audioContext, surpriseSound)
 }

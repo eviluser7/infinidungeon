@@ -9,12 +9,14 @@ import (
 
 // Game properties
 type Game struct {
-	inited           bool
-	op               ebiten.DrawImageOptions
-	player           *Player
-	scene            string
-	atLevel          int
-	backgroundChoice int
+	inited        bool
+	op            ebiten.DrawImageOptions
+	player        *Player
+	scene         string
+	atLevel       int
+	activateTimer bool
+	sceneTimer    int
+	situation     string
 }
 
 // Update the game state
@@ -62,16 +64,39 @@ func (g *Game) Update() error {
 			enableShrine.Rewind()
 			enableShrine.Play()
 		}
+
+		if g.scene == "ENDSTAGE" && g.atLevel == 3 &&
+			g.player.x >= 130 && g.player.x <= 192 &&
+			g.player.y >= 181 && g.player.y <= 207 && !g.player.talkedToEvil {
+			surprise.Rewind()
+			surprise.Play()
+			g.player.talkedToEvil = true
+			g.activateTimer = true
+		}
+	}
+
+	if g.activateTimer {
+		g.sceneTimer++
 	}
 
 	// Update player
 	if g.scene != "menu" {
 		g.player.Update(g)
+	}
+
+	switch g.scene {
+	case "STAGE1":
 		g.player.UpdateMap01(g)
+	case "STAGE2":
 		g.player.UpdateMap02(g)
+	case "STAGE3":
 		g.player.UpdateMap03(g)
+	case "STAGE4":
 		g.player.UpdateMap04(g)
+	case "STAGE5":
 		g.player.UpdateMap05(g)
+	case "ENDSTAGE":
+		g.player.UpdateMap06(g)
 	}
 
 	if inpututil.IsKeyJustPressed(ebiten.KeyEnter) {
@@ -79,6 +104,12 @@ func (g *Game) Update() error {
 			g.scene = "STAGE1"
 			g.atLevel = 6
 		}
+	}
+
+	if g.sceneTimer == 120 {
+		g.situation = "end"
+		g.scene = "transition"
+		g.activateTimer = false
 	}
 
 	return nil
@@ -164,8 +195,27 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	}
 
 	// Draw player
-	if g.scene != "menu" {
+	if g.scene != "menu" && g.scene != "transition" {
 		g.player.Draw(screen)
+	}
+
+	// Draw Mr. Evil
+	if g.scene == "ENDSTAGE" {
+		if g.atLevel == 3 && !g.player.talkedToEvil {
+			op := &ebiten.DrawImageOptions{}
+			op.GeoM.Reset()
+			op.GeoM.Translate(125.0, 203.0)
+			screen.DrawImage(evilStanding1, op)
+		} else if g.atLevel == 3 && g.player.talkedToEvil {
+			op := &ebiten.DrawImageOptions{}
+			op.GeoM.Reset()
+			op.GeoM.Translate(125.0, 203.0)
+			screen.DrawImage(evilStanding2, op)
+
+			op.GeoM.Reset()
+			op.GeoM.Translate(170.0, 203.0)
+			screen.DrawImage(exclamation, op)
+		}
 	}
 
 	// Show spacebar
@@ -198,6 +248,14 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		g.player.y >= 95 && g.player.y <= 173 && !g.player.enabledLastShrine {
 		g.op.GeoM.Reset()
 		g.op.GeoM.Translate(140.0, 120.0)
+		screen.DrawImage(spaceBar, &g.op)
+	}
+
+	if g.scene == "ENDSTAGE" && g.atLevel == 3 &&
+		g.player.x >= 130 && g.player.x <= 192 &&
+		g.player.y >= 181 && g.player.y <= 207 && !g.player.talkedToEvil {
+		g.op.GeoM.Reset()
+		g.op.GeoM.Translate(135.0, 190.0)
 		screen.DrawImage(spaceBar, &g.op)
 	}
 

@@ -16,6 +16,7 @@ type Player struct {
 	enabledShrine3    bool
 	enabledLastShrine bool
 	movedOnce         bool
+	talkedToEvil      bool
 }
 
 // Draw player

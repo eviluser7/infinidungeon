@@ -219,4 +219,12 @@ func DrawMaps(g *Game, screen *ebiten.Image) {
 			screen.DrawImage(backgroundVPost, &g.op)
 		}
 	}
+
+	if g.scene == "ENDSTAGE" {
+		if g.atLevel < 3 {
+			screen.DrawImage(backgroundVI1, &g.op)
+		} else {
+			screen.DrawImage(backgroundVI2, &g.op)
+		}
+	}
 }

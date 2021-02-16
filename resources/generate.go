@@ -71,6 +71,12 @@
 //go:generate file2byteslice -package=stage5 -input=./img/stage5/bgPost.png -output=./img/stage5/bgPost.go -var=Stage5Post_png
 //go:generate file2byteslice -package=stage5 -input=./img/stage5/whiteShrine.png -output=./img/stage5/whiteShrine.go -var=WhiteShrine_png
 
+//go:generate file2byteslice -package=stageEnd -input=./img/stageEnd/endBg.png -output=./img/stageEnd/endBg.go -var=EndBG_png
+//go:generate file2byteslice -package=stageEnd -input=./img/stageEnd/endBg2.png -output=./img/stageEnd/endBg2.go -var=EndBG2_png
+//go:generate file2byteslice -package=stageEnd -input=./img/stageEnd/dude_standing.png -output=./img/stageEnd/dudeStanding.go -var=MrEvilStanding_png
+//go:generate file2byteslice -package=stageEnd -input=./img/stageEnd/dude_standing2.png -output=./img/stageEnd/dudeStanding2.go -var=MrEvilStanding2_png
+//go:generate file2byteslice -package=stageEnd -input=./img/stageEnd/exclamation.png -output=./img/stageEnd/exclamation.go -var=Exclamation_png
+
 //go:generate file2byteslice -package=img -input=./img/char_idle_1.png -output=./img/charIdle1.go -var=CharIdle1_png
 //go:generate file2byteslice -package=img -input=./img/char_idle_2.png -output=./img/charIdle2.go -var=CharIdle2_png
 //go:generate file2byteslice -package=img -input=./img/char_idle_3.png -output=./img/charIdle3.go -var=CharIdle3_png
@@ -93,6 +99,7 @@
 //go:generate file2byteslice -package=img -input=./img/wasd.png -output=./img/wasd.go -var=Wasd_png
 //go:generate file2byteslice -package=img -input=./img/spacebar.png -output=./img/spacebar.go -var=Spacebar_png
 //go:generate file2byteslice -package=sfx -input=./sfx/enableShrine.wav -output=./sfx/enableShrine.go -var=EnableShrine_wav
+//go:generate file2byteslice -package=sfx -input=./sfx/surprise.wav -output=./sfx/surprise.go -var=Surprise_wav
 //go:generate gofmt -s -w .
 
 package resources
