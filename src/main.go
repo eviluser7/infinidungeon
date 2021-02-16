@@ -13,8 +13,8 @@ func main() {
 	loadSounds()
 
 	game := &Game{
-		scene:   "STAGE5",
-		atLevel: 43,
+		scene:   "STAGE1",
+		atLevel: 6,
 	}
 	ebiten.SetWindowSize(screenWidth*2, screenHeight*2)
 	ebiten.SetWindowResizable(true)

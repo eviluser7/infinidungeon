@@ -85,6 +85,14 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	g.op.GeoM.Translate(-float64(blurW)/2, -float64(blurH)/2) // Anchor
 	g.op.GeoM.Translate(float64(g.player.x), float64(g.player.y))
 
+	if g.scene == "STAGE1" || g.scene == "STAGE2" || g.scene == "STAGE3" {
+		screen.DrawImage(blur, &g.op)
+	} else if g.scene == "STAGE4" {
+		screen.DrawImage(greenBlur, &g.op)
+	} else if g.scene == "STAGE5" {
+		screen.DrawImage(moreBlur, &g.op)
+	}
+
 	if g.atLevel == 18 && g.player.enabledShrine1 && g.scene == "STAGE1" {
 		g.op.GeoM.Reset()
 		g.op.GeoM.Translate(0.0, 0.0)
@@ -136,14 +144,6 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		op.GeoM.Reset()
 		op.GeoM.Translate(0.0, 0.0)
 		screen.DrawImage(whiteShrine, op)
-	}
-
-	if g.scene == "STAGE1" || g.scene == "STAGE2" || g.scene == "STAGE3" {
-		screen.DrawImage(blur, &g.op)
-	} else if g.scene == "STAGE4" {
-		screen.DrawImage(greenBlur, &g.op)
-	} else if g.scene == "STAGE5" {
-		screen.DrawImage(moreBlur, &g.op)
 	}
 
 	// Draw controls
