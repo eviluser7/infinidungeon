@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/hajimehoshi/ebiten/v2"
 )
 
@@ -90,13 +88,11 @@ func sceneTransitions(g *Game, screen *ebiten.Image) {
 
 		if g.situation == "end" {
 			punches.Play()
-			fmt.Println(punches.IsPlaying())
 			if !punches.IsPlaying() {
 				// voice goes here
 
 				// if voice isn't playing ...
 				g.scene = "menu"
-				punches.IsPlaying()
 			}
 		}
 	}
