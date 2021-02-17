@@ -121,6 +121,9 @@ var (
 	shrineBlur1  *ebiten.Image
 	shrineBlur2  *ebiten.Image
 	shrineBlur3  *ebiten.Image
+	purpleEffect *ebiten.Image
+	blueEffect   *ebiten.Image
+	yellowEffect *ebiten.Image
 
 	// External
 	wasd     *ebiten.Image
@@ -683,6 +686,24 @@ func loadResources() {
 		panic(err)
 	}
 	shrineBlur3 = ebiten.NewImageFromImage(imgGreenBlur)
+
+	imgPurpleEffect, _, err := image.Decode(bytes.NewReader(img.PurpleEffect_png))
+	if err != nil {
+		panic(err)
+	}
+	purpleEffect = ebiten.NewImageFromImage(imgPurpleEffect)
+
+	imgBlueEffect, _, err := image.Decode(bytes.NewReader(img.BlueEffect_png))
+	if err != nil {
+		panic(err)
+	}
+	blueEffect = ebiten.NewImageFromImage(imgBlueEffect)
+
+	imgYellowEffect, _, err := image.Decode(bytes.NewReader(img.YellowEffect_png))
+	if err != nil {
+		panic(err)
+	}
+	yellowEffect = ebiten.NewImageFromImage(imgYellowEffect)
 
 	// External
 	imgWasd, _, err := image.Decode(bytes.NewReader(img.Wasd_png))

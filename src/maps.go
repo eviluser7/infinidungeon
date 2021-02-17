@@ -63,6 +63,7 @@ func DrawMaps(g *Game, screen *ebiten.Image) {
 		case 23:
 			screen.DrawImage(background23I, &g.op)
 		}
+		screen.DrawImage(purpleEffect, &g.op)
 	}
 
 	if g.scene == "STAGE2" {
@@ -120,6 +121,7 @@ func DrawMaps(g *Game, screen *ebiten.Image) {
 		case 23:
 			screen.DrawImage(background23II, &g.op)
 		}
+		screen.DrawImage(blueEffect, &g.op)
 	}
 
 	if g.scene == "STAGE3" {
@@ -204,6 +206,7 @@ func DrawMaps(g *Game, screen *ebiten.Image) {
 			screen.DrawImage(backgroundIII, &g.op)
 			screen.DrawImage(arrowRight, &g.op)
 		}
+		screen.DrawImage(yellowEffect, &g.op)
 	}
 
 	if g.scene == "STAGE4" {
