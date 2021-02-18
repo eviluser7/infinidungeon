@@ -106,6 +106,18 @@
 //go:generate file2byteslice -package=img -input=./img/loading5.png -output=./img/loading5.go -var=LoadingScreen5_png
 //go:generate file2byteslice -package=img -input=./img/loading6.png -output=./img/loading6.go -var=LoadingScreen6_png
 
+//go:generate file2byteslice -package=img -input=./img/achievementBar.png -output=./img/achievementBar.go -var=AchievementBar_png
+//go:generate file2byteslice -package=img -input=./img/achievementBar2.png -output=./img/achievementBar2.go -var=AchievementBar2_png
+//go:generate file2byteslice -package=img -input=./img/achievement1.png -output=./img/achievement1.go -var=Achievement1_png
+//go:generate file2byteslice -package=img -input=./img/achievement2.png -output=./img/achievement2.go -var=Achievement2_png
+//go:generate file2byteslice -package=img -input=./img/achievement3.png -output=./img/achievement3.go -var=Achievement3_png
+//go:generate file2byteslice -package=img -input=./img/achievement4.png -output=./img/achievement4.go -var=Achievement4_png
+//go:generate file2byteslice -package=img -input=./img/achievement5.png -output=./img/achievement5.go -var=Achievement5_png
+//go:generate file2byteslice -package=img -input=./img/achievement6.png -output=./img/achievement6.go -var=Achievement6_png
+//go:generate file2byteslice -package=img -input=./img/achievement7.png -output=./img/achievement7.go -var=Achievement7_png
+//go:generate file2byteslice -package=img -input=./img/achievement8.png -output=./img/achievement8.go -var=Achievement8_png
+//go:generate file2byteslice -package=img -input=./img/achievement9.png -output=./img/achievement9.go -var=Achievement9_png
+
 //go:generate file2byteslice -package=img -input=./img/wasd.png -output=./img/wasd.go -var=Wasd_png
 //go:generate file2byteslice -package=img -input=./img/spacebar.png -output=./img/spacebar.go -var=Spacebar_png
 //go:generate file2byteslice -package=sfx -input=./sfx/enableShrine.wav -output=./sfx/enableShrine.go -var=EnableShrine_wav

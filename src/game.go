@@ -9,14 +9,15 @@ import (
 
 // Game properties
 type Game struct {
-	inited        bool
-	op            ebiten.DrawImageOptions
-	player        *Player
-	scene         string
-	atLevel       int
-	activateTimer bool
-	sceneTimer    int
-	situation     string
+	inited           bool
+	op               ebiten.DrawImageOptions
+	player           *Player
+	scene            string
+	atLevel          int
+	activateTimer    bool
+	sceneTimer       int
+	situation        string
+	achievementTimer int
 }
 
 // Update the game state
@@ -80,6 +81,61 @@ func (g *Game) Update() error {
 		g.sceneTimer++
 	}
 
+	// Achievements
+	if g.player.enabledShrine1 && !g.player.gotAchievement1 {
+		g.player.gotAchievement = true
+		g.player.gotAchievement1 = true
+	}
+
+	if g.scene == "STAGE2" && !g.player.gotAchievement2 {
+		g.player.gotAchievement = true
+		g.player.gotAchievement2 = true
+	}
+
+	if g.player.enabledShrine2 && !g.player.gotAchievement3 {
+		g.player.gotAchievement = true
+		g.player.gotAchievement3 = true
+	}
+
+	if g.scene == "STAGE3" && !g.player.gotAchievement4 {
+		g.player.gotAchievement = true
+		g.player.gotAchievement4 = true
+	}
+
+	if g.player.enabledShrine3 && !g.player.gotAchievement5 {
+		g.player.gotAchievement = true
+		g.player.gotAchievement5 = true
+	}
+
+	if g.scene == "STAGE4" && !g.player.gotAchievement6 {
+		g.player.gotAchievement = true
+		g.player.gotAchievement6 = true
+	}
+
+	if g.scene == "STAGE5" && !g.player.gotAchievement7 {
+		g.player.gotAchievement = true
+		g.player.gotAchievement7 = true
+	}
+
+	if g.player.enabledLastShrine && !g.player.gotAchievement8 {
+		g.player.gotAchievement = true
+		g.player.gotAchievement8 = true
+	}
+
+	if g.scene == "ENDSTAGE" && !g.player.gotAchievement9 {
+		g.player.gotAchievement = true
+		g.player.gotAchievement9 = true
+	}
+
+	// Achievement timer events
+	if g.player.gotAchievement {
+		g.achievementTimer++
+	}
+	if g.achievementTimer >= 240 {
+		g.player.gotAchievement = false
+		g.achievementTimer = 0
+	}
+
 	// Update player
 	if g.scene != "menu" && g.scene != "transition" {
 		g.player.Update(g)
@@ -102,10 +158,13 @@ func (g *Game) Update() error {
 
 	if inpututil.IsKeyJustPressed(ebiten.KeyEnter) {
 		if g.scene == "menu" {
+			punches.SetVolume(0.0)
+			punches.Rewind()
+			g.player.talkedToEvil = false
 			g.sceneTimer = 0
 			g.situation = "level1"
 			g.scene = "transition"
-			g.atLevel = 6
+			g.atLevel = 0
 			g.player.y = 120
 			g.player.x = 160
 		}
@@ -271,6 +330,35 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		screen.DrawImage(backgroundMenu, &g.op)
 		screen.DrawImage(menu, &g.op)
 		screen.DrawImage(menuCredits, &g.op)
+	}
+
+	// Show achievements
+	if g.scene != "menu" && g.scene != "transition" &&
+		g.player.gotAchievement && g.achievementTimer <= 239 {
+		op := &ebiten.DrawImageOptions{}
+		op.GeoM.Reset()
+		op.GeoM.Translate(100.0, 200.0)
+		screen.DrawImage(achBar, op)
+
+		if g.player.gotAchievement1 && !g.player.gotAchievement2 {
+			screen.DrawImage(ach1, op)
+		} else if g.player.gotAchievement2 && !g.player.gotAchievement3 {
+			screen.DrawImage(ach2, op)
+		} else if g.player.gotAchievement3 && !g.player.gotAchievement4 {
+			screen.DrawImage(ach3, op)
+		} else if g.player.gotAchievement4 && !g.player.gotAchievement5 {
+			screen.DrawImage(ach4, op)
+		} else if g.player.gotAchievement5 && !g.player.gotAchievement6 {
+			screen.DrawImage(ach5, op)
+		} else if g.player.gotAchievement6 && !g.player.gotAchievement7 {
+			screen.DrawImage(ach6, op)
+		} else if g.player.gotAchievement7 && !g.player.gotAchievement8 {
+			screen.DrawImage(ach7, op)
+		} else if g.player.gotAchievement8 && !g.player.gotAchievement9 {
+			screen.DrawImage(ach8, op)
+		} else if g.player.gotAchievement9 {
+			screen.DrawImage(ach9, op)
+		}
 	}
 
 	sceneTransitions(g, screen)

@@ -140,6 +140,19 @@ var (
 	loadingScreen5 *ebiten.Image
 	loadingScreen6 *ebiten.Image
 
+	// Achievements
+	achBar  *ebiten.Image
+	achBar2 *ebiten.Image
+	ach1    *ebiten.Image
+	ach2    *ebiten.Image
+	ach3    *ebiten.Image
+	ach4    *ebiten.Image
+	ach5    *ebiten.Image
+	ach6    *ebiten.Image
+	ach7    *ebiten.Image
+	ach8    *ebiten.Image
+	ach9    *ebiten.Image
+
 	// Sounds
 	audioContext = audio.NewContext(44100)
 	enableShrine *audio.Player
@@ -772,6 +785,73 @@ func loadResources() {
 		panic(err)
 	}
 	loadingScreen6 = ebiten.NewImageFromImage(imgLoading6)
+
+	// Achievement-related
+	imgAchBar, _, err := image.Decode(bytes.NewReader(img.AchievementBar_png))
+	if err != nil {
+		panic(err)
+	}
+	achBar = ebiten.NewImageFromImage(imgAchBar)
+
+	imgAchBar2, _, err := image.Decode(bytes.NewReader(img.AchievementBar2_png))
+	if err != nil {
+		panic(err)
+	}
+	achBar2 = ebiten.NewImageFromImage(imgAchBar2)
+
+	imgAch1, _, err := image.Decode(bytes.NewReader(img.Achievement1_png))
+	if err != nil {
+		panic(err)
+	}
+	ach1 = ebiten.NewImageFromImage(imgAch1)
+
+	imgAch2, _, err := image.Decode(bytes.NewReader(img.Achievement2_png))
+	if err != nil {
+		panic(err)
+	}
+	ach2 = ebiten.NewImageFromImage(imgAch2)
+
+	imgAch3, _, err := image.Decode(bytes.NewReader(img.Achievement3_png))
+	if err != nil {
+		panic(err)
+	}
+	ach3 = ebiten.NewImageFromImage(imgAch3)
+
+	imgAch4, _, err := image.Decode(bytes.NewReader(img.Achievement4_png))
+	if err != nil {
+		panic(err)
+	}
+	ach4 = ebiten.NewImageFromImage(imgAch4)
+
+	imgAch5, _, err := image.Decode(bytes.NewReader(img.Achievement5_png))
+	if err != nil {
+		panic(err)
+	}
+	ach5 = ebiten.NewImageFromImage(imgAch5)
+
+	imgAch6, _, err := image.Decode(bytes.NewReader(img.Achievement6_png))
+	if err != nil {
+		panic(err)
+	}
+	ach6 = ebiten.NewImageFromImage(imgAch6)
+
+	imgAch7, _, err := image.Decode(bytes.NewReader(img.Achievement7_png))
+	if err != nil {
+		panic(err)
+	}
+	ach7 = ebiten.NewImageFromImage(imgAch7)
+
+	imgAch8, _, err := image.Decode(bytes.NewReader(img.Achievement8_png))
+	if err != nil {
+		panic(err)
+	}
+	ach8 = ebiten.NewImageFromImage(imgAch8)
+
+	imgAch9, _, err := image.Decode(bytes.NewReader(img.Achievement9_png))
+	if err != nil {
+		panic(err)
+	}
+	ach9 = ebiten.NewImageFromImage(imgAch9)
 }
 
 func loadSounds() {

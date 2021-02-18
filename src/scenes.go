@@ -16,7 +16,7 @@ func sceneTransitions(g *Game, screen *ebiten.Image) {
 
 			if g.sceneTimer == 120 && g.activateTimer {
 				g.activateTimer = false
-				g.scene = "STAGE1"
+				g.scene = "ENDSTAGE"
 				g.sceneTimer = 0
 			}
 		}
@@ -87,12 +87,14 @@ func sceneTransitions(g *Game, screen *ebiten.Image) {
 		}
 
 		if g.situation == "end" {
+			punches.SetVolume(1.0)
 			punches.Play()
-			if !punches.IsPlaying() {
-				// voice goes here
+			g.activateTimer = true
 
-				// if voice isn't playing ...
+			if g.sceneTimer == 240 && g.activateTimer {
+				g.activateTimer = false
 				g.scene = "menu"
+				g.sceneTimer = 0
 			}
 		}
 	}

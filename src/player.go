@@ -17,6 +17,17 @@ type Player struct {
 	enabledLastShrine bool
 	movedOnce         bool
 	talkedToEvil      bool
+	gotAchievement    bool
+	achievementNumber int
+	gotAchievement1   bool
+	gotAchievement2   bool
+	gotAchievement3   bool
+	gotAchievement4   bool
+	gotAchievement5   bool
+	gotAchievement6   bool
+	gotAchievement7   bool
+	gotAchievement8   bool
+	gotAchievement9   bool
 }
 
 // Draw player
