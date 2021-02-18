@@ -378,7 +378,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		g.player.gotAchievement && g.achievementTimer <= 239 {
 		op := &ebiten.DrawImageOptions{}
 		op.GeoM.Reset()
-		op.GeoM.Translate(100.0, 200.0)
+		op.GeoM.Translate(100.0, 10.0)
 		screen.DrawImage(achBar, op)
 
 		if g.player.gotAchievement1 && !g.player.gotAchievement2 {
