@@ -16,8 +16,8 @@ func sceneTransitions(g *Game, screen *ebiten.Image) {
 
 			if g.sceneTimer == 120 && g.activateTimer {
 				g.activateTimer = false
-				g.scene = "ENDSTAGE"
-				g.sceneTimer = 0
+				g.scene = "STAGE1"
+				g.sceneTimer = 6
 			}
 		}
 

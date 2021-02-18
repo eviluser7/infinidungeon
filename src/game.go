@@ -164,7 +164,7 @@ func (g *Game) Update() error {
 			g.sceneTimer = 0
 			g.situation = "level1"
 			g.scene = "transition"
-			g.atLevel = 0
+			g.atLevel = 6
 			g.player.y = 120
 			g.player.x = 160
 		}
