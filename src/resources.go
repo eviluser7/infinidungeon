@@ -6,6 +6,7 @@ import (
 	_ "image/png"
 	"math/rand"
 
+	"github.com/eviluser7/infinidungeon/resources/fonts"
 	"github.com/eviluser7/infinidungeon/resources/img"
 	"github.com/eviluser7/infinidungeon/resources/img/stage1"
 	"github.com/eviluser7/infinidungeon/resources/img/stage2"
@@ -13,9 +14,11 @@ import (
 	"github.com/eviluser7/infinidungeon/resources/img/stage5"
 	"github.com/eviluser7/infinidungeon/resources/img/stageEnd"
 	"github.com/eviluser7/infinidungeon/resources/sfx"
+	"github.com/golang/freetype/truetype"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/audio"
 	"github.com/hajimehoshi/ebiten/v2/audio/wav"
+	"golang.org/x/image/font"
 )
 
 var (
@@ -141,23 +144,30 @@ var (
 	loadingScreen6 *ebiten.Image
 
 	// Achievements
-	achBar  *ebiten.Image
-	achBar2 *ebiten.Image
-	ach1    *ebiten.Image
-	ach2    *ebiten.Image
-	ach3    *ebiten.Image
-	ach4    *ebiten.Image
-	ach5    *ebiten.Image
-	ach6    *ebiten.Image
-	ach7    *ebiten.Image
-	ach8    *ebiten.Image
-	ach9    *ebiten.Image
+	achBar            *ebiten.Image
+	achBar2           *ebiten.Image
+	achBarLocked      *ebiten.Image
+	ach1              *ebiten.Image
+	ach2              *ebiten.Image
+	ach3              *ebiten.Image
+	ach4              *ebiten.Image
+	ach5              *ebiten.Image
+	ach6              *ebiten.Image
+	ach7              *ebiten.Image
+	ach8              *ebiten.Image
+	ach9              *ebiten.Image
+	leftArrow         *ebiten.Image
+	rightArrow        *ebiten.Image
+	achievementButton *ebiten.Image
 
 	// Sounds
 	audioContext = audio.NewContext(44100)
 	enableShrine *audio.Player
 	surprise     *audio.Player
 	punches      *audio.Player
+
+	// Fonts
+	pixeledFont font.Face
 )
 
 func randomInt(min, max int) int {
@@ -799,6 +809,12 @@ func loadResources() {
 	}
 	achBar2 = ebiten.NewImageFromImage(imgAchBar2)
 
+	imgAchBarLocked, _, err := image.Decode(bytes.NewReader(img.AchievementLocked_png))
+	if err != nil {
+		panic(err)
+	}
+	achBarLocked = ebiten.NewImageFromImage(imgAchBarLocked)
+
 	imgAch1, _, err := image.Decode(bytes.NewReader(img.Achievement1_png))
 	if err != nil {
 		panic(err)
@@ -852,6 +868,24 @@ func loadResources() {
 		panic(err)
 	}
 	ach9 = ebiten.NewImageFromImage(imgAch9)
+
+	imgLeftArrow, _, err := image.Decode(bytes.NewReader(img.LeftArrow_png))
+	if err != nil {
+		panic(err)
+	}
+	leftArrow = ebiten.NewImageFromImage(imgLeftArrow)
+
+	imgRightArrow, _, err := image.Decode(bytes.NewReader(img.RightArrow_png))
+	if err != nil {
+		panic(err)
+	}
+	rightArrow = ebiten.NewImageFromImage(imgRightArrow)
+
+	imgAchievements, _, err := image.Decode(bytes.NewReader(img.AchievementButton_png))
+	if err != nil {
+		panic(err)
+	}
+	achievementButton = ebiten.NewImageFromImage(imgAchievements)
 }
 
 func loadSounds() {
@@ -874,4 +908,21 @@ func loadSounds() {
 		panic(err)
 	}
 	punches, err = audio.NewPlayer(audioContext, punchesSound)
+}
+
+func loadFonts() {
+	var err error
+
+	tt, err := truetype.Parse(fonts.Pixeled_ttf)
+
+	const dpi = 72
+	pixeledFont = truetype.NewFace(tt, &truetype.Options{
+		Size:    8,
+		DPI:     dpi,
+		Hinting: font.HintingFull,
+	})
+
+	if err != nil {
+		panic(err)
+	}
 }

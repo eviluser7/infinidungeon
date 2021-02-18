@@ -108,6 +108,7 @@
 
 //go:generate file2byteslice -package=img -input=./img/achievementBar.png -output=./img/achievementBar.go -var=AchievementBar_png
 //go:generate file2byteslice -package=img -input=./img/achievementBar2.png -output=./img/achievementBar2.go -var=AchievementBar2_png
+//go:generate file2byteslice -package=img -input=./img/achievementLocked.png -output=./img/achievementLocked.go -var=AchievementLocked_png
 //go:generate file2byteslice -package=img -input=./img/achievement1.png -output=./img/achievement1.go -var=Achievement1_png
 //go:generate file2byteslice -package=img -input=./img/achievement2.png -output=./img/achievement2.go -var=Achievement2_png
 //go:generate file2byteslice -package=img -input=./img/achievement3.png -output=./img/achievement3.go -var=Achievement3_png
@@ -117,12 +118,17 @@
 //go:generate file2byteslice -package=img -input=./img/achievement7.png -output=./img/achievement7.go -var=Achievement7_png
 //go:generate file2byteslice -package=img -input=./img/achievement8.png -output=./img/achievement8.go -var=Achievement8_png
 //go:generate file2byteslice -package=img -input=./img/achievement9.png -output=./img/achievement9.go -var=Achievement9_png
+//go:generate file2byteslice -package=img -input=./img/leftArrow.png -output=./img/leftArrow.go -var=LeftArrow_png
+//go:generate file2byteslice -package=img -input=./img/rightArrow.png -output=./img/rightArrow.go -var=RightArrow_png
+//go:generate file2byteslice -package=img -input=./img/achievements.png -output=./img/achievementButton.go -var=AchievementButton_png
 
 //go:generate file2byteslice -package=img -input=./img/wasd.png -output=./img/wasd.go -var=Wasd_png
 //go:generate file2byteslice -package=img -input=./img/spacebar.png -output=./img/spacebar.go -var=Spacebar_png
 //go:generate file2byteslice -package=sfx -input=./sfx/enableShrine.wav -output=./sfx/enableShrine.go -var=EnableShrine_wav
 //go:generate file2byteslice -package=sfx -input=./sfx/surprise.wav -output=./sfx/surprise.go -var=Surprise_wav
 //go:generate file2byteslice -package=sfx -input=./sfx/punch.wav -output=./sfx/punch.go -var=Punch_wav
+
+//go:generate file2byteslice -package=fonts -input=./fonts/Pixeled.ttf -output=./fonts/Pixeled.go -var=Pixeled_ttf
 //go:generate gofmt -s -w .
 
 package resources

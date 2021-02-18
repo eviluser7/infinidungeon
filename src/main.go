@@ -17,10 +17,12 @@ func main() {
 	loadResources()
 	loadMaps()
 	loadSounds()
+	loadFonts()
 
 	game := &Game{
-		scene:   "menu",
-		atLevel: 0,
+		scene:           "menu",
+		atLevel:         0,
+		achievementPage: 1,
 	}
 	ebiten.SetWindowSize(screenWidth*2, screenHeight*2)
 	ebiten.SetWindowResizable(true)

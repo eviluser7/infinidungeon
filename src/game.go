@@ -1,10 +1,13 @@
 package main
 
 import (
+	"fmt"
+	"image/color"
 	"os"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/inpututil"
+	"github.com/hajimehoshi/ebiten/v2/text"
 )
 
 // Game properties
@@ -18,10 +21,17 @@ type Game struct {
 	sceneTimer       int
 	situation        string
 	achievementTimer int
+	achievementPage  int
+	mouseX           int
+	mouseY           int
 }
 
 // Update the game state
 func (g *Game) Update() error {
+	x, y := ebiten.CursorPosition()
+	g.mouseX = x
+	g.mouseY = y
+
 	if !g.inited {
 		g.init()
 	}
@@ -137,7 +147,7 @@ func (g *Game) Update() error {
 	}
 
 	// Update player
-	if g.scene != "menu" && g.scene != "transition" {
+	if g.scene != "menu" && g.scene != "transition" && g.scene != "achievement" {
 		g.player.Update(g)
 	}
 
@@ -174,6 +184,33 @@ func (g *Game) Update() error {
 		g.situation = "end"
 		g.scene = "transition"
 		g.activateTimer = false
+	}
+
+	// Change achievement screen page
+	if inpututil.IsMouseButtonJustPressed(ebiten.MouseButtonLeft) && g.scene == "achievement" {
+		if x >= 20 && x <= 60 &&
+			y >= 120 && y <= 160 &&
+			g.achievementPage > 1 {
+			g.achievementPage--
+		}
+
+		if x >= 270 && x <= 310 &&
+			y >= 120 && y <= 160 &&
+			g.achievementPage < 3 {
+			g.achievementPage++
+		}
+
+		if x >= 20 && x <= 60 &&
+			y >= 10 && y <= 50 {
+			g.scene = "menu"
+		}
+	}
+
+	// Get into achievement screen
+	if inpututil.IsMouseButtonJustPressed(ebiten.MouseButtonLeft) &&
+		x >= 10 && x <= 50 &&
+		y >= 180 && y <= 220 {
+		g.scene = "achievement"
 	}
 
 	return nil
@@ -252,14 +289,14 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	}
 
 	// Draw controls
-	if !g.player.movedOnce && g.scene != "menu" {
+	if !g.player.movedOnce && g.scene != "menu" && g.scene != "achievement" {
 		g.op.GeoM.Reset()
 		g.op.GeoM.Translate(float64(g.player.x), float64(g.player.y))
 		screen.DrawImage(wasd, &g.op)
 	}
 
 	// Draw player
-	if g.scene != "menu" && g.scene != "transition" {
+	if g.scene != "menu" && g.scene != "transition" && g.scene != "achievement" {
 		g.player.Draw(screen)
 	}
 
@@ -330,6 +367,10 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		screen.DrawImage(backgroundMenu, &g.op)
 		screen.DrawImage(menu, &g.op)
 		screen.DrawImage(menuCredits, &g.op)
+
+		g.op.GeoM.Reset()
+		g.op.GeoM.Translate(10.0, 180.0)
+		screen.DrawImage(achievementButton, &g.op)
 	}
 
 	// Show achievements
@@ -359,6 +400,154 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		} else if g.player.gotAchievement9 {
 			screen.DrawImage(ach9, op)
 		}
+	}
+
+	// Achievements screen
+	if g.scene == "achievement" {
+		g.op.GeoM.Reset()
+		g.op.GeoM.Translate(0.0, 0.0)
+		screen.DrawImage(backgroundMenu, &g.op)
+
+		op1 := &ebiten.DrawImageOptions{}
+		op2 := &ebiten.DrawImageOptions{}
+		op3 := &ebiten.DrawImageOptions{}
+		text.Draw(screen, "Achievements", pixeledFont, 110, 20, color.White)
+		text.Draw(screen, fmt.Sprint(g.achievementPage), pixeledFont, 155, 230, color.White)
+
+		op1.GeoM.Reset()
+		op1.GeoM.Translate(100.0, 50.0)
+
+		op2.GeoM.Reset()
+		op2.GeoM.Translate(100.0, 115.0)
+
+		op3.GeoM.Reset()
+		op3.GeoM.Translate(100.0, 180.0)
+
+		// Draw achievements if player has them
+		if g.player.gotAchievement1 && g.achievementPage == 1 {
+			screen.DrawImage(achBar2, op1)
+
+			op1.GeoM.Reset()
+			op1.GeoM.Translate(100.0, 45.0) // Achievement in question
+			screen.DrawImage(ach1, op1)
+		}
+
+		if g.player.gotAchievement2 && g.achievementPage == 1 {
+			screen.DrawImage(achBar2, op2)
+
+			op2.GeoM.Reset()
+			op2.GeoM.Translate(100.0, 110.0) // Achievement in question
+			screen.DrawImage(ach2, op2)
+		}
+
+		if g.player.gotAchievement3 && g.achievementPage == 1 {
+			screen.DrawImage(achBar2, op3)
+
+			op3.GeoM.Reset()
+			op3.GeoM.Translate(100.0, 175.0)
+			screen.DrawImage(ach3, op3)
+		}
+
+		if g.player.gotAchievement4 && g.achievementPage == 2 {
+			screen.DrawImage(achBar2, op1)
+
+			op1.GeoM.Reset()
+			op1.GeoM.Translate(100.0, 45.0)
+			screen.DrawImage(ach4, op1)
+		}
+
+		if g.player.gotAchievement5 && g.achievementPage == 2 {
+			screen.DrawImage(achBar2, op2)
+
+			op2.GeoM.Reset()
+			op2.GeoM.Translate(100.0, 110.0)
+			screen.DrawImage(ach5, op2)
+		}
+
+		if g.player.gotAchievement6 && g.achievementPage == 2 {
+			screen.DrawImage(achBar2, op3)
+
+			op3.GeoM.Reset()
+			op3.GeoM.Translate(100.0, 175.0)
+			screen.DrawImage(ach6, op3)
+		}
+
+		if g.player.gotAchievement7 && g.achievementPage == 3 {
+			screen.DrawImage(achBar2, op1)
+
+			op1.GeoM.Reset()
+			op1.GeoM.Translate(100.0, 45.0)
+			screen.DrawImage(ach7, op1)
+		}
+
+		if g.player.gotAchievement8 && g.achievementPage == 3 {
+			screen.DrawImage(achBar2, op2)
+
+			op2.GeoM.Reset()
+			op2.GeoM.Translate(100.0, 110.0)
+			screen.DrawImage(ach8, op2)
+		}
+
+		if g.player.gotAchievement9 && g.achievementPage == 3 {
+			screen.DrawImage(achBar2, op3)
+
+			op3.GeoM.Reset()
+			op3.GeoM.Translate(100.0, 175.0)
+			screen.DrawImage(ach9, op3)
+		}
+
+		// Draw locked achievements
+		if !g.player.gotAchievement1 && g.achievementPage == 1 {
+			screen.DrawImage(achBarLocked, op1)
+		}
+
+		if !g.player.gotAchievement2 && g.achievementPage == 1 {
+			screen.DrawImage(achBarLocked, op2)
+		}
+
+		if !g.player.gotAchievement3 && g.achievementPage == 1 {
+			screen.DrawImage(achBarLocked, op3)
+		}
+
+		if !g.player.gotAchievement4 && g.achievementPage == 2 {
+			screen.DrawImage(achBarLocked, op1)
+		}
+
+		if !g.player.gotAchievement5 && g.achievementPage == 2 {
+			screen.DrawImage(achBarLocked, op2)
+		}
+
+		if !g.player.gotAchievement6 && g.achievementPage == 2 {
+			screen.DrawImage(achBarLocked, op3)
+		}
+
+		if !g.player.gotAchievement7 && g.achievementPage == 3 {
+			screen.DrawImage(achBarLocked, op1)
+		}
+
+		if !g.player.gotAchievement8 && g.achievementPage == 3 {
+			screen.DrawImage(achBarLocked, op2)
+		}
+
+		if !g.player.gotAchievement9 && g.achievementPage == 3 {
+			screen.DrawImage(achBarLocked, op3)
+		}
+
+		g.op.GeoM.Reset()
+		g.op.GeoM.Translate(270.0, 120.0)
+		if g.achievementPage < 3 {
+			screen.DrawImage(rightArrow, &g.op)
+		}
+
+		g.op.GeoM.Reset()
+		g.op.GeoM.Translate(20.0, 120.0)
+		if g.achievementPage > 1 {
+			screen.DrawImage(leftArrow, &g.op)
+		}
+
+		g.op.GeoM.Reset()
+		g.op.GeoM.Translate(20.0, 10.0)
+		screen.DrawImage(leftArrow, &g.op)
 	}
 
 	sceneTransitions(g, screen)
