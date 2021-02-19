@@ -23,6 +23,8 @@ func main() {
 		scene:           "menu",
 		atLevel:         0,
 		achievementPage: 1,
+		dialogueShowing: false,
+		whatDialogue:    0,
 	}
 	ebiten.SetWindowSize(screenWidth*2, screenHeight*2)
 	ebiten.SetWindowResizable(true)

@@ -122,6 +122,9 @@
 //go:generate file2byteslice -package=img -input=./img/rightArrow.png -output=./img/rightArrow.go -var=RightArrow_png
 //go:generate file2byteslice -package=img -input=./img/achievements.png -output=./img/achievementButton.go -var=AchievementButton_png
 
+//go:generate file2byteslice -package=img -input=./img/mrEvilDialogueBox.png -output=./img/dialogueBox.go -var=DialogueBox_png
+//go:generate file2byteslice -package=img -input=./img/enter.png -output=./img/enter.go -var=EnterKey_png
+
 //go:generate file2byteslice -package=img -input=./img/wasd.png -output=./img/wasd.go -var=Wasd_png
 //go:generate file2byteslice -package=img -input=./img/spacebar.png -output=./img/spacebar.go -var=Spacebar_png
 //go:generate file2byteslice -package=sfx -input=./sfx/enableShrine.wav -output=./sfx/enableShrine.go -var=EnableShrine_wav

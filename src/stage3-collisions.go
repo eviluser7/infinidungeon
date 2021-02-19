@@ -167,6 +167,7 @@ func (p *Player) UpdateMap03(g *Game) {
 			g.atLevel = 0
 			g.scene = "transition"
 			g.situation = "level4"
+			g.whatDialogue = 0
 		}
 	}
 }

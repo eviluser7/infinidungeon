@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"image"
 	_ "image/png"
-	"math/rand"
 
 	"github.com/eviluser7/infinidungeon/resources/fonts"
 	"github.com/eviluser7/infinidungeon/resources/img"
@@ -131,6 +130,7 @@ var (
 	// External
 	wasd     *ebiten.Image
 	spaceBar *ebiten.Image
+	enterKey *ebiten.Image
 
 	// Menu
 	menu           *ebiten.Image
@@ -160,6 +160,9 @@ var (
 	rightArrow        *ebiten.Image
 	achievementButton *ebiten.Image
 
+	// Dialogue
+	dialogueBox *ebiten.Image
+
 	// Sounds
 	audioContext = audio.NewContext(44100)
 	enableShrine *audio.Player
@@ -167,12 +170,9 @@ var (
 	punches      *audio.Player
 
 	// Fonts
-	pixeledFont font.Face
+	pixeledFont      font.Face
+	pixeledFontSmall font.Face
 )
-
-func randomInt(min, max int) int {
-	return min + rand.Intn(max-min)
-}
 
 func loadMaps() {
 	var err error
@@ -886,6 +886,19 @@ func loadResources() {
 		panic(err)
 	}
 	achievementButton = ebiten.NewImageFromImage(imgAchievements)
+
+	// Dialogue
+	imgDialogueBox, _, err := image.Decode(bytes.NewReader(img.DialogueBox_png))
+	if err != nil {
+		panic(err)
+	}
+	dialogueBox = ebiten.NewImageFromImage(imgDialogueBox)
+
+	imgEnterKey, _, err := image.Decode(bytes.NewReader(img.EnterKey_png))
+	if err != nil {
+		panic(err)
+	}
+	enterKey = ebiten.NewImageFromImage(imgEnterKey)
 }
 
 func loadSounds() {
@@ -918,6 +931,18 @@ func loadFonts() {
 	const dpi = 72
 	pixeledFont = truetype.NewFace(tt, &truetype.Options{
 		Size:    8,
+		DPI:     dpi,
+		Hinting: font.HintingFull,
+	})
+
+	if err != nil {
+		panic(err)
+	}
+
+	tt2, err := truetype.Parse(fonts.Pixeled_ttf)
+
+	pixeledFontSmall = truetype.NewFace(tt2, &truetype.Options{
+		Size:    7,
 		DPI:     dpi,
 		Hinting: font.HintingFull,
 	})

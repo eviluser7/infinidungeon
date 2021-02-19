@@ -12,18 +12,22 @@ import (
 
 // Game properties
 type Game struct {
-	inited           bool
-	op               ebiten.DrawImageOptions
-	player           *Player
-	scene            string
-	atLevel          int
-	activateTimer    bool
-	sceneTimer       int
-	situation        string
-	achievementTimer int
-	achievementPage  int
-	mouseX           int
-	mouseY           int
+	inited                   bool
+	op                       ebiten.DrawImageOptions
+	player                   *Player
+	scene                    string
+	atLevel                  int
+	activateTimer            bool
+	sceneTimer               int
+	situation                string
+	achievementTimer         int
+	achievementPage          int
+	dialogueTimer            int
+	dialogueShowing          bool
+	whatDialogue             int
+	amountOfDialoguesInScene int
+	mouseX                   int
+	mouseY                   int
 }
 
 // Update the game state
@@ -38,8 +42,6 @@ func (g *Game) Update() error {
 
 	if inpututil.IsKeyJustPressed(ebiten.KeyEscape) {
 		os.Exit(0)
-		//fmt.Println(g.player.x, g.player.y)
-		//fmt.Println(g.atLevel)
 	}
 
 	// Grab shrines
@@ -47,6 +49,8 @@ func (g *Game) Update() error {
 		if g.scene == "STAGE1" && g.atLevel == 10 &&
 			g.player.x >= 160 && g.player.x <= 236 &&
 			g.player.y >= 95 && g.player.y <= 173 && !g.player.enabledShrine1 {
+			g.whatDialogue = 0
+			g.dialogueShowing = true
 			g.player.enabledShrine1 = true
 			enableShrine.Rewind()
 			enableShrine.Play()
@@ -178,6 +182,16 @@ func (g *Game) Update() error {
 			g.player.y = 120
 			g.player.x = 160
 		}
+
+		if g.dialogueShowing && g.scene != "menu" &&
+			g.scene != "transition" {
+			g.whatDialogue++
+		}
+	}
+
+	if !g.dialogueShowing && g.scene != "menu" && g.scene != "transition" &&
+		g.scene != "achievement" && g.whatDialogue < g.amountOfDialoguesInScene {
+		g.dialogueShowing = true
 	}
 
 	if g.sceneTimer == 120 && g.scene == "ENDSTAGE" {
@@ -211,6 +225,33 @@ func (g *Game) Update() error {
 		x >= 10 && x <= 50 &&
 		y >= 180 && y <= 220 {
 		g.scene = "achievement"
+	}
+
+	// Change number of dialogues per scene
+	if g.scene == "STAGE1" && !g.player.enabledShrine1 {
+		g.amountOfDialoguesInScene = 5
+	} else if g.player.enabledShrine1 && g.scene == "STAGE1" {
+		g.amountOfDialoguesInScene = 2
+	}
+
+	if g.scene == "STAGE2" {
+		g.amountOfDialoguesInScene = 7
+	}
+
+	if g.scene == "STAGE3" {
+		g.amountOfDialoguesInScene = 5
+	}
+
+	if g.scene == "STAGE4" {
+		g.amountOfDialoguesInScene = 3
+	}
+
+	if g.scene == "STAGE5" {
+		g.amountOfDialoguesInScene = 7
+	}
+
+	if g.scene == "ENDSTAGE" {
+		g.amountOfDialoguesInScene = 0
 	}
 
 	return nil
@@ -548,6 +589,177 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		g.op.GeoM.Reset()
 		g.op.GeoM.Translate(20.0, 10.0)
 		screen.DrawImage(leftArrow, &g.op)
+	}
+
+	// Show dialogue box when asked for
+	if g.dialogueShowing {
+		g.op.GeoM.Reset()
+		g.op.GeoM.Translate(0.0, 0.0)
+		screen.DrawImage(dialogueBox, &g.op)
+
+		g.op.GeoM.Reset()
+		g.op.GeoM.Translate(250.0, 180.0)
+		screen.DrawImage(enterKey, &g.op)
+
+		// Show certain dialogues
+		if g.scene == "STAGE1" {
+			if g.amountOfDialoguesInScene == 5 {
+				if g.whatDialogue == 0 {
+					text.Draw(screen, "Hello there", pixeledFont, 80, 220, color.White)
+				}
+
+				if g.whatDialogue == 1 {
+					text.Draw(screen, "If you don't know, my name is Mr. Evil", pixeledFontSmall, 80, 220, color.White)
+				}
+
+				if g.whatDialogue == 2 {
+					text.Draw(screen, "Welcome to my dungeon", pixeledFontSmall, 80, 220, color.White)
+				}
+
+				if g.whatDialogue == 3 {
+					text.Draw(screen, "To escape this room, find the shrine", pixeledFontSmall, 80, 220, color.White)
+				}
+
+				if g.whatDialogue == 4 {
+					text.Draw(screen, "Now where could THAT be? Right?", pixeledFontSmall, 80, 220, color.White)
+				}
+
+				if g.whatDialogue == 5 {
+					text.Draw(screen, "I wish you luck, subject.", pixeledFontSmall, 80, 220, color.White)
+				}
+			}
+
+			if g.amountOfDialoguesInScene == 2 {
+				if g.whatDialogue == 0 {
+					text.Draw(screen, "Looks like you found what you needed!", pixeledFontSmall, 80, 220, color.White)
+				}
+
+				if g.whatDialogue == 1 {
+					text.Draw(screen, "Er... well done", pixeledFontSmall, 80, 220, color.White)
+				}
+
+				if g.whatDialogue == 2 {
+					text.Draw(screen, "Now find the exit and move on.", pixeledFontSmall, 80, 220, color.White)
+				}
+			}
+		}
+
+		if g.scene == "STAGE2" {
+			if g.whatDialogue == 0 {
+				text.Draw(screen, "Good job.", pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 1 {
+				text.Draw(screen, "But this is only the beginning.", pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 2 {
+				text.Draw(screen, "Here's the trick:", pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 3 {
+				text.Draw(screen, `"Watch your surroundings ...`, pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 4 {
+				text.Draw(screen, `... for everything looks ...`, pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 5 {
+				text.Draw(screen, `... all so similar."`, pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 6 {
+				text.Draw(screen, "You know what to do.", pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 7 {
+				text.Draw(screen, "Good luck.", pixeledFontSmall, 80, 220, color.White)
+			}
+		}
+
+		if g.scene == "STAGE3" {
+			if g.whatDialogue == 0 {
+				text.Draw(screen, "Smarter than I thought...", pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 1 {
+				text.Draw(screen, "Let's see if you get over this.", pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 2 {
+				text.Draw(screen, "The arrows...", pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 3 {
+				text.Draw(screen, "They lead to the shrine.", pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 4 {
+				text.Draw(screen, "... or perhaps not.", pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 5 {
+				text.Draw(screen, "Find it out.", pixeledFontSmall, 80, 220, color.White)
+			}
+		}
+
+		if g.scene == "STAGE4" {
+			if g.whatDialogue == 0 {
+				text.Draw(screen, "You made it this far", pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 1 {
+				text.Draw(screen, "So I gave you a break room", pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 2 {
+				text.Draw(screen, "Stay as much as you need to stay", pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 3 {
+				text.Draw(screen, "And prepare for the next riddle.", pixeledFontSmall, 80, 220, color.White)
+			}
+		}
+
+		if g.scene == "STAGE5" {
+			if g.whatDialogue == 0 {
+				text.Draw(screen, "This is the hardest riddle.", pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 1 {
+				text.Draw(screen, "A room to get locked at.", pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 2 {
+				text.Draw(screen, "Fake walls.", pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 3 {
+				text.Draw(screen, "Arrows lead nowhere.", pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 4 {
+				text.Draw(screen, "It's all pretty dark.", pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 5 {
+				text.Draw(screen, "And you are really...", pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 6 {
+				text.Draw(screen, "... really slow.", pixeledFontSmall, 80, 220, color.White)
+			}
+
+			if g.whatDialogue == 7 {
+				text.Draw(screen, "Let's see you beat this one.", pixeledFontSmall, 80, 220, color.White)
+			}
+		}
+	}
+
+	// Check if the number of dialogues per level exceeds the dialogue at the moment
+	if g.whatDialogue > g.amountOfDialoguesInScene {
+		g.dialogueShowing = false
 	}
 
 	sceneTransitions(g, screen)

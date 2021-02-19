@@ -8,6 +8,7 @@ func (p *Player) UpdateMap04(g *Game) {
 			g.atLevel = 3
 			g.scene = "transition"
 			g.situation = "level5"
+			g.whatDialogue = 0
 		}
 	}
 }

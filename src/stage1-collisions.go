@@ -236,6 +236,7 @@ func (p *Player) UpdateMap01(g *Game) {
 		}
 
 		if p.y >= 207 && g.atLevel == 18 && g.player.enabledShrine1 {
+			g.whatDialogue = 0
 			p.x = 160
 			p.y = 120
 			g.atLevel = 6
