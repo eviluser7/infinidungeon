@@ -159,6 +159,7 @@ var (
 	leftArrow         *ebiten.Image
 	rightArrow        *ebiten.Image
 	achievementButton *ebiten.Image
+	achievementText   string
 
 	// Dialogue
 	dialogueBox *ebiten.Image
@@ -172,6 +173,18 @@ var (
 	// Fonts
 	pixeledFont      font.Face
 	pixeledFontSmall font.Face
+)
+
+const (
+	text1 = `Find the blue shrine`
+	text2 = `Make your way to the pond of walls`
+	text3 = `Find the yellow shrine`
+	text4 = `Reach the valley of arrows`
+	text5 = `Find the green shrine`
+	text6 = `A rest is always good`
+	text7 = `Reach the hole of confunsion`
+	text8 = `Find the last shrine`
+	text9 = `Finish the game.`
 )
 
 func loadMaps() {

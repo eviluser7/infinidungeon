@@ -254,6 +254,58 @@ func (g *Game) Update() error {
 		g.amountOfDialoguesInScene = 0
 	}
 
+	// Show achievements description
+	if g.player.gotAchievement1 && g.player.gotAchievement2 &&
+		g.player.gotAchievement3 && g.player.gotAchievement4 &&
+		g.player.gotAchievement5 && g.player.gotAchievement6 &&
+		g.player.gotAchievement7 && g.player.gotAchievement8 &&
+		g.player.gotAchievement9 {
+		if x >= 100 && x <= 217 &&
+			y >= 50 && y <= 77 && g.achievementPage == 1 {
+			achievementText = text1
+		}
+
+		if x >= 100 && x <= 217 &&
+			y >= 115 && y <= 142 && g.achievementPage == 1 {
+			achievementText = text2
+		}
+
+		if x >= 100 && x <= 217 &&
+			y >= 180 && y <= 207 && g.achievementPage == 1 {
+			achievementText = text3
+		}
+
+		if x >= 100 && x <= 217 &&
+			y >= 50 && y <= 77 && g.achievementPage == 2 {
+			achievementText = text4
+		}
+
+		if x >= 100 && x <= 217 &&
+			y >= 115 && y <= 142 && g.achievementPage == 2 {
+			achievementText = text5
+		}
+
+		if x >= 100 && x <= 217 &&
+			y >= 180 && y <= 207 && g.achievementPage == 2 {
+			achievementText = text6
+		}
+
+		if x >= 100 && x <= 217 &&
+			y >= 50 && y <= 77 && g.achievementPage == 3 {
+			achievementText = text7
+		}
+
+		if x >= 100 && x <= 217 &&
+			y >= 115 && y <= 142 && g.achievementPage == 3 {
+			achievementText = text8
+		}
+
+		if x >= 100 && x <= 217 &&
+			y >= 180 && y <= 207 && g.achievementPage == 3 {
+			achievementText = text9
+		}
+	}
+
 	return nil
 }
 
@@ -454,6 +506,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		op3 := &ebiten.DrawImageOptions{}
 		text.Draw(screen, "Achievements", pixeledFont, 110, 20, color.White)
 		text.Draw(screen, fmt.Sprint(g.achievementPage), pixeledFont, 155, 230, color.White)
+		text.Draw(screen, achievementText, pixeledFontSmall, 100, 40, color.White)
 
 		op1.GeoM.Reset()
 		op1.GeoM.Translate(100.0, 50.0)
@@ -776,9 +829,18 @@ func (g *Game) init() {
 	}()
 
 	g.player = &Player{
-		x: 160,
-		y: 145,
-		w: 32,
-		h: 32,
+		x:               160,
+		y:               145,
+		w:               32,
+		h:               32,
+		gotAchievement1: true,
+		gotAchievement2: true,
+		gotAchievement3: true,
+		gotAchievement4: true,
+		gotAchievement5: true,
+		gotAchievement6: true,
+		gotAchievement7: true,
+		gotAchievement8: true,
+		gotAchievement9: true,
 	}
 }
