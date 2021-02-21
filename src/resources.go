@@ -169,6 +169,7 @@ var (
 	enableShrine *audio.Player
 	surprise     *audio.Player
 	punches      *audio.Player
+	dialogue     *audio.Player
 
 	// Fonts
 	pixeledFont      font.Face
@@ -185,6 +186,7 @@ const (
 	text7 = `Reach the hole of confunsion`
 	text8 = `Find the last shrine`
 	text9 = `Finish the game.`
+	intro = `massiveNerd presents...`
 )
 
 func loadMaps() {
@@ -934,6 +936,12 @@ func loadSounds() {
 		panic(err)
 	}
 	punches, err = audio.NewPlayer(audioContext, punchesSound)
+
+	dialogueSound, err := wav.Decode(audioContext, bytes.NewReader(sfx.Dialogue_wav))
+	if err != nil {
+		panic(err)
+	}
+	dialogue, err = audio.NewPlayer(audioContext, dialogueSound)
 }
 
 func loadFonts() {

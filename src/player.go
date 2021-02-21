@@ -60,3 +60,14 @@ func (p *Player) Draw(screen *ebiten.Image) {
 	op.GeoM.Translate(float64(p.x), float64(p.y))
 	screen.DrawImage(s, op)
 }
+
+// Reset things from player
+func (p *Player) Reset() {
+	p.enabledShrine1 = false
+	p.enabledShrine2 = false
+	p.enabledShrine3 = false
+	p.enabledLastShrine = false
+	p.talkedToEvil = false
+	p.x = 160
+	p.y = 120
+}

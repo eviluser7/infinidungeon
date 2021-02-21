@@ -20,7 +20,9 @@ func main() {
 	loadFonts()
 
 	game := &Game{
-		scene:           "menu",
+		scene:           "transition",
+		situation:       "intro",
+		activateTimer:   true,
 		atLevel:         0,
 		achievementPage: 1,
 		dialogueShowing: false,
@@ -29,7 +31,7 @@ func main() {
 	ebiten.SetWindowSize(screenWidth*2, screenHeight*2)
 	ebiten.SetWindowResizable(true)
 	ebiten.MaximizeWindow()
-	ebiten.SetWindowTitle("Infinidungeon")
+	ebiten.SetWindowTitle("Mr. Evil's Infinidungeon")
 	if err := ebiten.RunGame(game); err != nil {
 		panic(err)
 	}

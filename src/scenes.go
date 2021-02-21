@@ -1,13 +1,25 @@
 package main
 
 import (
+	"image/color"
+
 	"github.com/hajimehoshi/ebiten/v2"
+	"github.com/hajimehoshi/ebiten/v2/text"
 )
 
 // sceneTransitions detects what situation is going on and sets a transition
 // from screen to screen so it won't feel as empty.
 func sceneTransitions(g *Game, screen *ebiten.Image) {
 	if g.scene == "transition" {
+		if g.situation == "intro" {
+			text.Draw(screen, intro, pixeledFont, 80, 120, color.White)
+
+			if g.sceneTimer == 180 && g.activateTimer {
+				g.activateTimer = false
+				g.scene = "menu"
+				g.sceneTimer = 0
+			}
+		}
 		if g.situation == "level1" {
 			g.op.GeoM.Reset()
 			g.op.GeoM.Translate(0.0, 0.0)

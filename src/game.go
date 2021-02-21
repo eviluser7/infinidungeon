@@ -30,6 +30,17 @@ type Game struct {
 	mouseY                   int
 }
 
+// Reset game
+func (g *Game) Reset() {
+	punches.SetVolume(0.0)
+	punches.Rewind()
+	g.sceneTimer = 0
+	g.situation = "level1"
+	g.scene = "transition"
+	g.atLevel = 6
+	g.player.Reset()
+}
+
 // Update the game state
 func (g *Game) Update() error {
 	x, y := ebiten.CursorPosition()
@@ -172,19 +183,13 @@ func (g *Game) Update() error {
 
 	if inpututil.IsKeyJustPressed(ebiten.KeyEnter) {
 		if g.scene == "menu" {
-			punches.SetVolume(0.0)
-			punches.Rewind()
-			g.player.talkedToEvil = false
-			g.sceneTimer = 0
-			g.situation = "level1"
-			g.scene = "transition"
-			g.atLevel = 6
-			g.player.y = 120
-			g.player.x = 160
+			g.Reset()
 		}
 
 		if g.dialogueShowing && g.scene != "menu" &&
 			g.scene != "transition" {
+			dialogue.Rewind()
+			dialogue.Play()
 			g.whatDialogue++
 		}
 	}
@@ -382,13 +387,12 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	}
 
 	// Draw controls
-	if !g.player.movedOnce && g.scene != "menu" && g.scene != "achievement" {
+	if !g.player.movedOnce && g.scene != "menu" && g.scene != "achievement" && g.situation != "intro" {
 		g.op.GeoM.Reset()
 		g.op.GeoM.Translate(float64(g.player.x), float64(g.player.y))
 		screen.DrawImage(wasd, &g.op)
 	}
 
-	// Draw player
 	if g.scene != "menu" && g.scene != "transition" && g.scene != "achievement" {
 		g.player.Draw(screen)
 	}
@@ -808,6 +812,12 @@ func (g *Game) Draw(screen *ebiten.Image) {
 				text.Draw(screen, "Let's see you beat this one.", pixeledFontSmall, 80, 220, color.White)
 			}
 		}
+
+		if g.scene == "ENDSTAGE" {
+			if g.whatDialogue == 0 {
+				text.Draw(screen, "Uh...?", pixeledFont, 80, 220, color.White)
+			}
+		}
 	}
 
 	// Check if the number of dialogues per level exceeds the dialogue at the moment
@@ -829,18 +839,9 @@ func (g *Game) init() {
 	}()
 
 	g.player = &Player{
-		x:               160,
-		y:               145,
-		w:               32,
-		h:               32,
-		gotAchievement1: true,
-		gotAchievement2: true,
-		gotAchievement3: true,
-		gotAchievement4: true,
-		gotAchievement5: true,
-		gotAchievement6: true,
-		gotAchievement7: true,
-		gotAchievement8: true,
-		gotAchievement9: true,
+		x: 160,
+		y: 145,
+		w: 32,
+		h: 32,
 	}
 }
