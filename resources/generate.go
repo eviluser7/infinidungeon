@@ -132,6 +132,11 @@
 //go:generate file2byteslice -package=sfx -input=./sfx/punch.wav -output=./sfx/punch.go -var=Punch_wav
 //go:generate file2byteslice -package=sfx -input=./sfx/dialogue.wav -output=./sfx/dialogue.go -var=Dialogue_wav
 
+//go:generate file2byteslice -package=sfx -input=./sfx/song1.wav -output=./sfx/song1.go -var=Song1_wav
+//go:generate file2byteslice -package=sfx -input=./sfx/song2.wav -output=./sfx/song2.go -var=Song2_wav
+//go:generate file2byteslice -package=sfx -input=./sfx/song3.wav -output=./sfx/song3.go -var=Song3_wav
+//go:generate file2byteslice -package=sfx -input=./sfx/song5.wav -output=./sfx/song5.go -var=Song5_wav
+
 //go:generate file2byteslice -package=fonts -input=./fonts/Pixeled.ttf -output=./fonts/Pixeled.go -var=Pixeled_ttf
 //go:generate gofmt -s -w .
 

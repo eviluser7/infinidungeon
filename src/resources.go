@@ -171,6 +171,12 @@ var (
 	punches      *audio.Player
 	dialogue     *audio.Player
 
+	// Music
+	music1 *audio.Player
+	music2 *audio.Player
+	music3 *audio.Player
+	music5 *audio.Player
+
 	// Fonts
 	pixeledFont      font.Face
 	pixeledFontSmall font.Face
@@ -942,6 +948,30 @@ func loadSounds() {
 		panic(err)
 	}
 	dialogue, err = audio.NewPlayer(audioContext, dialogueSound)
+
+	song1, err := wav.Decode(audioContext, bytes.NewReader(sfx.Song1_wav))
+	if err != nil {
+		panic(err)
+	}
+	music1, err = audio.NewPlayer(audioContext, song1)
+
+	song2, err := wav.Decode(audioContext, bytes.NewReader(sfx.Song2_wav))
+	if err != nil {
+		panic(err)
+	}
+	music2, err = audio.NewPlayer(audioContext, song2)
+
+	song3, err := wav.Decode(audioContext, bytes.NewReader(sfx.Song3_wav))
+	if err != nil {
+		panic(err)
+	}
+	music3, err = audio.NewPlayer(audioContext, song3)
+
+	song5, err := wav.Decode(audioContext, bytes.NewReader(sfx.Song5_wav))
+	if err != nil {
+		panic(err)
+	}
+	music5, err = audio.NewPlayer(audioContext, song5)
 }
 
 func loadFonts() {

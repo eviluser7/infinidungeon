@@ -194,6 +194,11 @@ func (g *Game) Update() error {
 		}
 	}
 
+	// Play startup sound
+	if g.scene == "transition" && g.situation == "intro" {
+		dialogue.Play()
+	}
+
 	if !g.dialogueShowing && g.scene != "menu" && g.scene != "transition" &&
 		g.scene != "achievement" && g.whatDialogue < g.amountOfDialoguesInScene {
 		g.dialogueShowing = true
