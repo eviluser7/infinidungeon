@@ -11,6 +11,10 @@ import (
 // from screen to screen so it won't feel as empty.
 func sceneTransitions(g *Game, screen *ebiten.Image) {
 	if g.scene == "transition" {
+		music1.SetVolume(0.0)
+		music2.SetVolume(0.0)
+		music3.SetVolume(0.0)
+		music5.SetVolume(0.0)
 		if g.situation == "intro" {
 			text.Draw(screen, intro, pixeledFont, 80, 120, color.White)
 

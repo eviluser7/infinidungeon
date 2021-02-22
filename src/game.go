@@ -168,14 +168,46 @@ func (g *Game) Update() error {
 
 	switch g.scene {
 	case "STAGE1":
+		music1.SetVolume(1.0)
+		if !music1.IsPlaying() {
+			music1.Rewind()
+			music1.Play()
+			music2.SetVolume(0.0)
+			music3.SetVolume(0.0)
+			music5.SetVolume(0.0)
+		}
 		g.player.UpdateMap01(g)
 	case "STAGE2":
+		music2.SetVolume(1.0)
+		if !music2.IsPlaying() {
+			music2.Rewind()
+			music2.Play()
+			music1.SetVolume(0.0)
+			music3.SetVolume(0.0)
+			music5.SetVolume(0.0)
+		}
 		g.player.UpdateMap02(g)
 	case "STAGE3":
+		music3.SetVolume(1.0)
+		if !music3.IsPlaying() {
+			music3.Rewind()
+			music3.Play()
+			music1.SetVolume(0.0)
+			music2.SetVolume(0.0)
+			music5.SetVolume(0.0)
+		}
 		g.player.UpdateMap03(g)
 	case "STAGE4":
 		g.player.UpdateMap04(g)
 	case "STAGE5":
+		music5.SetVolume(1.0)
+		if !music5.IsPlaying() {
+			music5.Rewind()
+			music5.Play()
+			music1.SetVolume(0.0)
+			music2.SetVolume(0.0)
+			music3.SetVolume(0.0)
+		}
 		g.player.UpdateMap05(g)
 	case "ENDSTAGE":
 		g.player.UpdateMap06(g)
