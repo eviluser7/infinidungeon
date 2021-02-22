@@ -3,7 +3,9 @@ package main
 import (
 	"bytes"
 	"image"
+	"image/png"
 	_ "image/png"
+	"os"
 
 	"github.com/eviluser7/infinidungeon/resources/fonts"
 	"github.com/eviluser7/infinidungeon/resources/img"
@@ -180,6 +182,11 @@ var (
 	// Fonts
 	pixeledFont      font.Face
 	pixeledFontSmall font.Face
+
+	// Window
+	icon16 image.Image
+	icon32 image.Image
+	icon48 image.Image
 )
 
 const (
@@ -633,6 +640,40 @@ func loadMaps() {
 
 func loadResources() {
 	var err error
+
+	// Icon
+	f16, err := os.Open("../icon16.png")
+	if err != nil {
+		panic(err)
+	}
+	defer f16.Close()
+
+	icon16, err = png.Decode(f16)
+	if err != nil {
+		panic(err)
+	}
+
+	f32, err := os.Open("../icon32.png")
+	if err != nil {
+		panic(err)
+	}
+	defer f32.Close()
+
+	icon32, err = png.Decode(f32)
+	if err != nil {
+		panic(err)
+	}
+
+	f48, err := os.Open("../icon48.png")
+	if err != nil {
+		panic(err)
+	}
+	defer f48.Close()
+
+	icon48, err = png.Decode(f48)
+	if err != nil {
+		panic(err)
+	}
 
 	imgCharIdle1, _, err := image.Decode(bytes.NewReader(img.CharIdle1_png))
 	if err != nil {

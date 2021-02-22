@@ -8,6 +8,7 @@ require (
 	github.com/hajimehoshi/ebiten/v2 v2.0.5
 	github.com/hajimehoshi/file2byteslice v0.0.0-20200812174855-0e5e8a80490e
 	github.com/hajimehoshi/oto v0.7.1 // indirect
+	github.com/josephspurrier/goversioninfo v1.2.0 // indirect
 	github.com/kr/text v0.2.0 // indirect
 	golang.org/x/exp v0.0.0-20210212053707-62dc52270d37 // indirect
 	golang.org/x/image v0.0.0-20210216034530-4410531fe030

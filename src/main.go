@@ -1,6 +1,7 @@
 package main
 
 import (
+	"image"
 	"math/rand"
 	"time"
 
@@ -32,6 +33,7 @@ func main() {
 	ebiten.SetWindowResizable(true)
 	ebiten.MaximizeWindow()
 	ebiten.SetWindowTitle("Mr. Evil's Infinidungeon")
+	ebiten.SetWindowIcon([]image.Image{icon16, icon32, icon48})
 	if err := ebiten.RunGame(game); err != nil {
 		panic(err)
 	}
