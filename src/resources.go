@@ -3,9 +3,7 @@ package main
 import (
 	"bytes"
 	"image"
-	"image/png"
 	_ "image/png"
-	"os"
 
 	"github.com/eviluser7/infinidungeon/resources/fonts"
 	"github.com/eviluser7/infinidungeon/resources/img"
@@ -642,35 +640,17 @@ func loadResources() {
 	var err error
 
 	// Icon
-	f16, err := os.Open("../icon16.png")
-	if err != nil {
-		panic(err)
-	}
-	defer f16.Close()
-
-	icon16, err = png.Decode(f16)
+	icon16, _, err = image.Decode(bytes.NewReader(img.Icon16_png))
 	if err != nil {
 		panic(err)
 	}
 
-	f32, err := os.Open("../icon32.png")
-	if err != nil {
-		panic(err)
-	}
-	defer f32.Close()
-
-	icon32, err = png.Decode(f32)
+	icon32, _, err = image.Decode(bytes.NewReader(img.Icon32_png))
 	if err != nil {
 		panic(err)
 	}
 
-	f48, err := os.Open("../icon48.png")
-	if err != nil {
-		panic(err)
-	}
-	defer f48.Close()
-
-	icon48, err = png.Decode(f48)
+	icon48, _, err = image.Decode(bytes.NewReader(img.Icon48_png))
 	if err != nil {
 		panic(err)
 	}

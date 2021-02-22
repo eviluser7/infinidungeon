@@ -125,6 +125,10 @@
 //go:generate file2byteslice -package=img -input=./img/mrEvilDialogueBox.png -output=./img/dialogueBox.go -var=DialogueBox_png
 //go:generate file2byteslice -package=img -input=./img/enter.png -output=./img/enter.go -var=EnterKey_png
 
+//go:generate file2byteslice -package=img -input=./img/icon16.png -output=./img/icon16.go -var=Icon16_png
+//go:generate file2byteslice -package=img -input=./img/icon32.png -output=./img/icon32.go -var=Icon32_png
+//go:generate file2byteslice -package=img -input=./img/icon48.png -output=./img/icon48.go -var=Icon48_png
+
 //go:generate file2byteslice -package=img -input=./img/wasd.png -output=./img/wasd.go -var=Wasd_png
 //go:generate file2byteslice -package=img -input=./img/spacebar.png -output=./img/spacebar.go -var=Spacebar_png
 //go:generate file2byteslice -package=sfx -input=./sfx/enableShrine.wav -output=./sfx/enableShrine.go -var=EnableShrine_wav
